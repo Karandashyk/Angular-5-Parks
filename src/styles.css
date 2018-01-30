@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(~@angular/material/prebuilt-themes/deeppurple-amber.css);
+div.content-header {
+  background-color: whitesmoke;
+  padding: 20px;
+  font-size: 30px; }
+
+a:focus, a:hover {
+  text-decoration: none;
+  outline: none; }
+
+.flex-spacer {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+div.content-header {
+  background-color: rgb(245,245,245);
+  padding: 20px;
+  font-size: 30px;
+}
+a:focus, a:hover {
+  text-decoration: none;
+  outline: none;
+}
+.flex-spacer {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}

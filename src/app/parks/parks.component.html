@@ -1,0 +1,16 @@
+<div class="content-header">Parks</div>
+<button mat-button>Add parks</button>
+<button mat-button>Import</button>
+<mat-divider></mat-divider>
+<mat-tab-group>
+  <mat-tab label="All parks">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [style.background]="tile.color">
+        {{tile.text}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Parks suggested by users">Content 2</mat-tab>
+</mat-tab-group>

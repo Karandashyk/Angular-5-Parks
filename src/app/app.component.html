@@ -1,0 +1,23 @@
+<!-- main app container -->
+<app-alert></app-alert>
+
+<mat-toolbar class="example-header">
+  Parks-admin
+  <div class="flex-spacer"></div>
+  <a mat-button *ngIf="isLoggedIn || (isLoggedIn$ | async)" (click)="onLogout()">Logout</a>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <!--<app-header></app-header>-->
+
+  <mat-sidenav *ngIf="isLoggedIn || (isLoggedIn$ | async)" #nav mode="side" opened="true" class="example-sidenav">
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let link of links" href="{{link.route}}"> {{ link.text }} </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

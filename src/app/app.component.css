@@ -1,0 +1,27 @@
+.example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.example-sidenav {
+  display: flex;
+  justify-content: flex-start;
+  width: 200px;
+  background: #22303d;
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.24); }
+  .example-sidenav .mat-nav-list {
+    width: 100%; }
+  .example-sidenav .mat-list-item {
+    color: #fafafa; }
+
+.example-header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24); }
+
+/*# sourceMappingURL=app.component.css.map */
