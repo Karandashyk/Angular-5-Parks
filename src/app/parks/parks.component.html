@@ -1,9 +1,26 @@
 <div class="content-header">Parks</div>
-<button mat-button>Add parks</button>
+<button mat-button routerLink="/parks/add">Add parks</button>
+<button mat-button>Add category</button>
 <button mat-button>Import</button>
 <mat-divider></mat-divider>
 <mat-tab-group>
   <mat-tab label="All parks">
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile
+        *ngFor="let park of parks" class="park-wrapper" routerLink="/parks/{{park.id}}">
+        <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
+        <img src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
+        <div class="title-wrapper">
+          <span class="name">{{park.name}}</span>
+          <span>{{park.address}}</span>
+        </div>
+          <div *ngIf="park.number_of_reports" class="report-wrapper" matTooltip="Reports" matTooltipPosition="before">
+            <mat-chip color="primary" selected="true">{{park.number_of_reports}}</mat-chip>
+          </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Parks suggested by users">
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile
         *ngFor="let tile of tiles"
@@ -12,5 +29,4 @@
       </mat-grid-tile>
     </mat-grid-list>
   </mat-tab>
-  <mat-tab label="Parks suggested by users">Content 2</mat-tab>
 </mat-tab-group>

@@ -1,0 +1,47 @@
+$light-grey: rgb(245,245,245);
+$muddy-green: rgb(34, 48, 61);
+//$muddy-green-opacity: rgba(34, 48, 61, 0.5);
+
+
+.park-wrapper {
+  img {
+    width: 100%;
+  }
+  .title-wrapper {
+    width: 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    color: $light-grey;
+    background: linear-gradient(to right, $muddy-green, transparent);
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    span {
+      margin: 5px 10px;
+      display: block;
+      font-size: 15px;
+      &.name {
+        margin: 10px;
+        font-size: 22px;
+      }
+    }
+  }
+  .report-wrapper {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    mat-chip {
+      &:focus {
+        outline: none;
+      }
+      margin: 5px 10px;
+      padding: 5px 10px;
+      border-radius: 50%;
+    }
+  }
+}
+

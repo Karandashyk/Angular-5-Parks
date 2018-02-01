@@ -24,20 +24,10 @@ export class AuthGuard implements CanActivate {
     return this.authService.isLoggedIn
       .take(1)
       .map((isLoggedIn: boolean) => {
-        if (isLoggedIn || localStorage.getItem('currentUser')) {
+        if (isLoggedIn || localStorage.getItem('auth_token')) {
           return true;
         } else { this.router.navigate(['/login']); }
         return false;
       });
   }
-
-  //   if (localStorage.getItem('currentUser')) {
-  //     // logged in so return true
-  //     return true;
-  //   }
-  //
-  //   // not logged in so redirect to login page
-  //   this.router.navigate(['/login']);
-  //   return false;
-  // }
 }

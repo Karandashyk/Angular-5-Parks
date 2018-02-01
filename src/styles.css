@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(~@angular/material/prebuilt-themes/deeppurple-amber.css);
+@import url(~owl.carousel/dist/assets/owl.carousel.css);
+@import url(~owl.carousel/dist/assets/owl.theme.default.css);
 div.content-header {
   background-color: whitesmoke;
   padding: 20px;

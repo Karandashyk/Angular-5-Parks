@@ -17,8 +17,8 @@ export class AppComponent implements OnInit  {
     {text: 'Equipment', route: '/equipment'},
     {text: 'Export', route: '/export'}
   ];
-  currentUser: IUser;
-  users: IUser[] = [];
+  auth_token: string;
+  // users: IUser[] = [];
   isLoggedIn = false;
   isLoggedIn$: Observable<boolean>;
 
@@ -26,12 +26,12 @@ export class AppComponent implements OnInit  {
     private alertService: AlertService,
     private authService: AuthenticationService
   ) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.auth_token = localStorage.getItem('auth_token');
   }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
-    if (localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('auth_token')) {
       // logged in so return true
       this.isLoggedIn = true;
     }
@@ -42,3 +42,37 @@ export class AppComponent implements OnInit  {
     this.authService.logout();
   }
 }
+
+
+
+// links = [
+//   {text: 'Parks', route: '/parks'},
+//   {text: 'Users', route: '/users'},
+//   {text: 'Surveys', route: '/surveys'},
+//   {text: 'Equipment', route: '/equipment'},
+//   {text: 'Export', route: '/export'}
+// ];
+// currentUser: IUser;
+// users: IUser[] = [];
+// isLoggedIn = false;
+// isLoggedIn$: Observable<boolean>;
+//
+// constructor(
+//   private alertService: AlertService,
+//   private authService: AuthenticationService
+// ) {
+//   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+// }
+//
+// ngOnInit() {
+//   this.isLoggedIn$ = this.authService.isLoggedIn;
+//   if (localStorage.getItem('currentUser')) {
+//     // logged in so return true
+//     this.isLoggedIn = true;
+//   }
+// }
+//
+// onLogout() {
+//   this.isLoggedIn = false;
+//   this.authService.logout();
+// }

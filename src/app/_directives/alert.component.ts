@@ -8,7 +8,7 @@ import { AlertService } from '../_services/index';
   templateUrl: 'alert.component.html'
 })
 
-export class AlertComponent {
+export class AlertComponent implements OnInit {
   message: any;
 
   constructor(private alertService: AlertService) { }

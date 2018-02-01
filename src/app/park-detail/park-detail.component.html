@@ -1,0 +1,22 @@
+<div *ngIf="park">
+  <div class="content-header">{{ park.name | uppercase }}</div>
+  <button mat-button (click)="goBack()"><mat-icon class="material-icons md-18">arrow_back</mat-icon>Go back</button>
+  <button mat-button (click)="save()">Save</button>
+  <mat-divider></mat-divider>
+  <owl-carousel
+    [options]="{items: 3, dots: false, navigation: false}"
+    [items]="park.pictures"
+    [carouselClasses]="['owl-theme', 'row', 'sliding']">
+  <div class="item" *ngFor="let picture of park.pictures">
+    <div class="thumbnail-image" [ngStyle]="{'background': 'url(http://138.68.174.118' + picture.preview + ')', width: '100px', height: '100px'}"></div>
+  </div>
+  </owl-carousel>
+
+  <!--<mat-grid-list cols="6" rowHeight="1:1">-->
+    <!--<mat-grid-tile-->
+      <!--*ngFor="let picture of park.pictures" class="park-wrapper">-->
+      <!--<img src="http://138.68.174.118{{picture.preview}}" alt="preview">-->
+    <!--</mat-grid-tile>-->
+  <!--</mat-grid-list>-->
+
+</div>

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,qBAAsB;EACpB,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,IAAI;EACjB,UAAU,EAAE,IAAI;EAChB,YAAY,EAAE,GAAG;;AAGjB,iBAAI;EACF,KAAK,EAAE,IAAI",
+"sources": ["park-detail.component.scss"],
+"names": [],
+"file": "park-detail.component.css"
+}

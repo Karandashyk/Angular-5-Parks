@@ -1,3 +1,5 @@
+$muddy-green: rgb(34, 48, 61);
+
 .example-container {
   position: absolute;
   top: 60px;
@@ -10,7 +12,7 @@
   display: flex;
   justify-content: flex-start;
   width: 200px;
-  background: rgba(34, 48, 61, 1);
+  background: $muddy-green;
   box-shadow: 4px 0 6px rgba(0, 0, 0, .24);
   .mat-nav-list {
     width: 100%;

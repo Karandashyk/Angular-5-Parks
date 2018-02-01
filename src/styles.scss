@@ -2,8 +2,13 @@
 
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+@import "~owl.carousel/dist/assets/owl.carousel.css";
+@import "~owl.carousel/dist/assets/owl.theme.default.css";
+
+$light-grey: rgb(245,245,245);
+
 div.content-header {
-  background-color: rgb(245,245,245);
+  background-color: $light-grey;
   padding: 20px;
   font-size: 30px;
 }
