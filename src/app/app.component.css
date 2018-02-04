@@ -24,4 +24,7 @@
   right: 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24); }
 
+.mat-drawer-content {
+  height: 95%; }
+
 /*# sourceMappingURL=app.component.css.map */

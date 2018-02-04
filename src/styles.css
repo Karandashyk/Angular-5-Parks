@@ -2,10 +2,31 @@
 @import url(~@angular/material/prebuilt-themes/deeppurple-amber.css);
 @import url(~owl.carousel/dist/assets/owl.carousel.css);
 @import url(~owl.carousel/dist/assets/owl.theme.default.css);
+.bold {
+  font-weight: 500;
+  display: inline !important; }
+
 div.content-header {
   background-color: whitesmoke;
   padding: 20px;
   font-size: 30px; }
+  div.content-header div {
+    display: inline; }
+    div.content-header div mat-chip {
+      padding: 5px 10px;
+      border-radius: 50%;
+      position: relative;
+      top: -5px;
+      margin-left: 15px; }
+      div.content-header div mat-chip:focus {
+        outline: none; }
+
+div.sub-content-header {
+  background-color: whitesmoke;
+  padding: 15px 15px 10px;
+  font-size: 16px; }
+  div.sub-content-header div {
+    display: inline; }
 
 a:focus, a:hover {
   text-decoration: none;
@@ -15,5 +36,52 @@ a:focus, a:hover {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1; }
+
+owl-carousel .thumbnail-image {
+  width: 100%; }
+  owl-carousel .thumbnail-image:hover:before {
+    position: absolute;
+    font-size: 30px;
+    text-align: center;
+    padding: 40px;
+    content: '\00d7';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.5); }
+owl-carousel .owl-nav {
+  margin-top: 0 !important; }
+owl-carousel .owl-prev,
+owl-carousel .owl-next {
+  position: absolute;
+  top: -5px;
+  height: 100%; }
+  owl-carousel .owl-prev .material-icons,
+  owl-carousel .owl-next .material-icons {
+    position: relative;
+    top: 40%; }
+owl-carousel .owl-prev {
+  left: 10px; }
+owl-carousel .owl-next {
+  right: -20px; }
+
+image-upload .img-ul {
+  height: 60px; }
+  image-upload .img-ul .img-ul-file-upload {
+    padding: 10px; }
+    image-upload .img-ul .img-ul-file-upload label {
+      margin-bottom: 0;
+      font-size: 1em;
+      padding: 8px; }
+    image-upload .img-ul .img-ul-file-upload .img-ul-drag-box-msg {
+      padding-top: 10px; }
+    image-upload .img-ul .img-ul-file-upload .img-ul-clear {
+      display: none; }
+  image-upload .img-ul .img-ul-container {
+    position: relative;
+    z-index: 1; }
+
+.park-info .mat-form-field-infix {
+  padding: 0;
+  border-top: 0; }
 
 /*# sourceMappingURL=styles.css.map */
