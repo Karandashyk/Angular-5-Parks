@@ -1,22 +1,110 @@
 <div *ngIf="park">
-  <div class="content-header">{{ park.name | uppercase }}</div>
+  <div class="content-header">
+    <mat-form-field class="input-width" [style.width.px]="park.name.length * 20">
+      <input matInput [(disabled)]="edit.name" [(ngModel)]="park.name">
+    </mat-form-field>
+    <div *ngIf="edit.name" matTooltip="Edit" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.name = false">edit</mat-icon>
+    </div>
+    <div *ngIf="!edit.name" matTooltip="Save" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.name = true; save()">done</mat-icon>
+    </div>
+    <div *ngIf="park.rating" matTooltip="Rating" matTooltipPosition="after">
+      <mat-chip color="primary" selected="true">{{park.rating.toFixed(1)}}</mat-chip>
+    </div>
+    <button mat-button class="delete" (click)="deletePark()">Delete</button>
+  </div>
   <button mat-button (click)="goBack()"><mat-icon class="material-icons md-18">arrow_back</mat-icon>Go back</button>
-  <button mat-button (click)="save()">Save</button>
+  <!--<button mat-button (click)="save()">Save</button>-->
   <mat-divider></mat-divider>
+
   <owl-carousel
-    [options]="{items: 3, dots: false, navigation: false}"
+    [options]="{items: 5, dots: false, nav: true, navText: ['<mat-icon class=\'material-icons md-18\'>arrow_back</mat-icon>', '<mat-icon class=\'material-icons md-18\'>arrow_forward</mat-icon>']}"
     [items]="park.pictures"
     [carouselClasses]="['owl-theme', 'row', 'sliding']">
   <div class="item" *ngFor="let picture of park.pictures">
-    <div class="thumbnail-image" [ngStyle]="{'background': 'url(http://138.68.174.118' + picture.preview + ')', width: '100px', height: '100px'}"></div>
+    <div class="thumbnail-image"
+         [ngStyle]="{'background': 'url(http://138.68.174.118' + picture.preview + ') no-repeat scroll center center', width: '100%', height: '125px'}"
+         (click)="deletePicture(picture.id)">
+    </div>
   </div>
   </owl-carousel>
 
-  <!--<mat-grid-list cols="6" rowHeight="1:1">-->
-    <!--<mat-grid-tile-->
-      <!--*ngFor="let picture of park.pictures" class="park-wrapper">-->
-      <!--<img src="http://138.68.174.118{{picture.preview}}" alt="preview">-->
-    <!--</mat-grid-tile>-->
-  <!--</mat-grid-list>-->
+  <image-upload
+    [buttonCaption]="'Add Images'"
+    [preview]="false"
+    (removed)="onRemoved($event)"
+    (uploadFinished)="onUploadFinished($event)">
+  ></image-upload>
 
+  <div class="sub-content-header">
+    Description
+    <div *ngIf="edit.description" matTooltip="Edit" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.description = false">edit</mat-icon>
+    </div>
+    <div *ngIf="!edit.description" matTooltip="Save" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.description = true; save()">done</mat-icon>
+    </div>
+  </div>
+  <div class="park-info">
+    Year built:
+    <mat-form-field class="input-width">
+      <input matInput [(disabled)]="edit.description" [(ngModel)]="park.year_built" type="text" maxlength="4">
+    </mat-form-field><br>
+    <mat-form-field class="input-full-width">
+      <textarea matInput
+                matTextareaAutosize
+                [(disabled)]="edit.description"
+                [(ngModel)]="park.description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="sub-content-header">
+    Address
+    <div *ngIf="edit.address" matTooltip="Edit" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.address = false">edit</mat-icon>
+    </div>
+    <div *ngIf="!edit.address" matTooltip="Save" matTooltipPosition="after">
+      <mat-icon class="material-icons md-16" (click)="edit.address = true; save()">done</mat-icon>
+    </div>  </div>
+  <div class="park-info">
+    <span class="bold">{{park.address}}</span>
+  </div>
+  <agm-map
+    [latitude]="park.coordinates[0]"
+    [longitude]="park.coordinates[1]"
+    [zoom]="12"
+    [scrollwheel]="false">
+    <agm-marker
+      [latitude]="park.coordinates[0]"
+      [longitude]="park.coordinates[1]"
+      [markerDraggable]="!edit.address"
+      (dragEnd)="markerDragEnd($event)">
+    </agm-marker>
+  </agm-map>
+
+  <div class="sub-content-header">
+    Equipment
+    <mat-icon class="material-icons md-16">edit</mat-icon>
+  </div>
+  <mat-grid-list cols="6" rowHeight="1:1">
+    <mat-grid-tile
+      *ngFor="let eq of park.equipment" class="equipment-wrapper">
+      <img src="http://138.68.174.118{{eq.picture}}" alt="preview">
+      <div class="title-wrapper">
+        <span class="name">{{eq.name}}</span>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="sub-content-header">
+    Reports
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let report of reports" class="report-wrapper">
+      <mat-icon class="material-icons md-18" mat-list-icon>comment</mat-icon>
+      {{report.text}}
+      <mat-icon class="material-icons md-16 clear" (click)="deleteReport(report.id)">clear</mat-icon>
+    </mat-list-item>
+  </mat-list>
 </div>

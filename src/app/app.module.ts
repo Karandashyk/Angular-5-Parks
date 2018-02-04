@@ -20,6 +20,10 @@ import { LoginComponent } from './login/index';
 import { ParkDetailComponent } from './park-detail/park-detail.component';
 
 import { OwlModule } from 'ngx-owl-carousel';
+import { ImageUploadModule } from 'angular2-image-upload';
+import { AgmCoreModule } from '@agm/core';
+
+
 
 @NgModule({
   imports: [
@@ -29,7 +33,11 @@ import { OwlModule } from 'ngx-owl-carousel';
     routing,
     MaterialModule,
     BrowserAnimationsModule,
-    OwlModule
+    OwlModule,
+    ImageUploadModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD84bDJZmR_LAlNNehLDaZ5EgULW0Q3wC4'
+    })
   ],
   declarations: [
     AppComponent,

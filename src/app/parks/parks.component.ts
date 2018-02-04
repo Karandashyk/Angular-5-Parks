@@ -10,6 +10,7 @@ import { ParkService } from '../_services/index';
 
 export class ParksComponent implements OnInit {
   parks: IPark[] = [];
+  userCreatedParks: IPark[] = [];
 
   constructor(private parkService: ParkService) {}
 
@@ -17,12 +18,9 @@ export class ParksComponent implements OnInit {
     this.loadAllParks();
   }
   loadAllParks() {
-    this.parkService.getParks().subscribe(parks => { this.parks = parks; });
+    this.parkService.getParks()
+      .subscribe(parks => { this.parks = parks; });
+    this.parkService.getUserCreatedParks()
+      .subscribe(userCreatedParks => { this.userCreatedParks = userCreatedParks; });
   }
-  tiles = [
-    {text: 'One', color: 'lightblue'},
-    {text: 'Two', color: 'lightgreen'},
-    {text: 'Three', color: 'lightpink'},
-    {text: 'Four', color: '#DDBDF1'},
-  ];
 }
