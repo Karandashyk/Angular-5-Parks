@@ -38,7 +38,7 @@ import { AgmCoreModule } from '@agm/core';
     ImageUploadModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD84bDJZmR_LAlNNehLDaZ5EgULW0Q3wC4'
-    })
+    }),
   ],
   declarations: [
     AppComponent,

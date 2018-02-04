@@ -84,4 +84,7 @@ image-upload .img-ul {
   padding: 0;
   border-top: 0; }
 
+.app-park-input .mat-focused .mat-form-field-label {
+  font-size: 10px; }
+
 /*# sourceMappingURL=styles.css.map */

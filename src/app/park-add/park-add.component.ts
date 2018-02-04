@@ -13,12 +13,15 @@ import { ParkService } from '../_services/index';
 
 export class ParkAddComponent {
 
-  edit = {
-    name: true,
-    description: true,
-    address: true
+  park: INewPark = {
+    name: '',
+    description: '',
+    latitude: 0,
+    longitude: 0,
+    year_built: '',
+    category_ids: [],
+    equipment_ids: [],
   };
-  park: INewPark;
   private pictures: string[] = [];
 
   constructor(

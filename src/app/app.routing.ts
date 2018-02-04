@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'parks', component: ParksComponent, canActivate: [AuthGuard] },
   { path: 'parks/:id', component: ParkDetailComponent, canActivate: [AuthGuard] },
-  { path: 'parks/add', component: ParkAddComponent, canActivate: [AuthGuard] },
+  { path: 'add_park', component: ParkAddComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'equipment', component: EquipmentComponent, canActivate: [AuthGuard] },
 

@@ -2,11 +2,8 @@
   float: right;
   top: 5px; }
 .content-header .input-width {
-  min-width: 50px;
+  min-width: 100px;
   max-width: 75%; }
-
-.mat-input-element:disabled {
-  color: inherit; }
 
 .material-icons.md-18 {
   font-size: 18px;

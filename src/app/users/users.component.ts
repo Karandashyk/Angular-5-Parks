@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.loadAllUsers();
+    // this.loadAllUsers();
   }
 
   deleteUser(id: number) {
