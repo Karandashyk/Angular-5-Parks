@@ -17,7 +17,8 @@ import { UsersComponent } from './users/index';
 import { EquipmentComponent } from './equipment/index';
 import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
-import { ParkDetailComponent } from './park-detail/park-detail.component';
+import { ParkDetailComponent } from './park-detail/index';
+import { ParkAddComponent } from './park-add/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -48,6 +49,7 @@ import { AgmCoreModule } from '@agm/core';
     UsersComponent,
     ParkDetailComponent,
     LoginComponent,
+    ParkAddComponent
   ],
   providers: [
     AuthGuard,
