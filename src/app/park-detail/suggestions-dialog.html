@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let suggestion of suggestions; let i = index;">
-      <mat-expansion-panel-header *ngIf="compareObj(suggestion)">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           Suggestion {{i+1}}
         </mat-panel-title>

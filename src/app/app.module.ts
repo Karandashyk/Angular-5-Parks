@@ -18,7 +18,6 @@ import { EquipmentComponent } from './equipment/index';
 import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent } from './park-detail/index';
-import { ParkAddComponent } from './park-add/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -49,7 +48,6 @@ import { AgmCoreModule } from '@agm/core';
     UsersComponent,
     ParkDetailComponent,
     LoginComponent,
-    ParkAddComponent,
     SuggestedParkDetailComponent,
     SuggestionsDialogComponent, AddDialogComponent
   ],

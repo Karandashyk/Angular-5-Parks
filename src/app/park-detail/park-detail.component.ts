@@ -129,10 +129,6 @@ export class SuggestionsDialogComponent implements OnInit {
     this.getSuggestions();
   }
 
-  compareObj(suggestion: IPark): boolean {
-    return JSON.stringify(this.data.park) === JSON.stringify(suggestion);
-  }
-
   getSuggestions(): void {
     this.parkService.getParkSuggestions(this.data.id)
       .subscribe(suggestions => {this.suggestions = suggestions; console.log(this.suggestions); });
@@ -140,6 +136,15 @@ export class SuggestionsDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  compare(obj1: IPark, obj2: IPark): boolean {
+    for (const p in obj1) {
+      if (typeof (obj1[p]) === 'object') {
+        if (!this.compare(obj1[p], obj2[p])) { return false; }
+      } else if (obj1[p] !== obj2[p]) { return false; }
+    }
+    return true;
   }
 
 }
