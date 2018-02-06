@@ -11,7 +11,12 @@ $light-light-grey: #fafafa;
     max-width: 75%;
   }
 }
-
+.sub-content-header {
+  .add {
+    float: right;
+    top: -9px;
+  }
+}
 .material-icons.md-18 {
   font-size: 18px;
   height: 18px;
@@ -33,8 +38,11 @@ $light-light-grey: #fafafa;
     margin-left: 20px;
   }
 }
-.park-info {
-  padding: 15px;
+.add-park-info {
+  padding: 0 15px;
+  &.padding {
+    padding: 15px;
+  }
   .mat-form-field-infix {
     padding: 0;
     border-top: 0;
@@ -67,12 +75,5 @@ agm-map {
       display: block;
       font-size: 15px;
     }
-  }
-}
-.report-wrapper {
-  font-size: 15px;
-  height: 30px;
-  .list-item {
-    padding-right: 10px;
   }
 }

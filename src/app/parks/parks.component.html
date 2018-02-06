@@ -1,5 +1,5 @@
 <div class="content-header">Parks</div>
-<button mat-button routerLink="/add_park">Add park</button>
+<button mat-button  (click)="openDialog()">Add park</button>
 <button mat-button>Add category</button>
 <button mat-button>Import</button>
 <mat-divider></mat-divider>
@@ -9,21 +9,26 @@
       <mat-grid-tile
         *ngFor="let park of parks" class="park-wrapper" routerLink="/parks/{{park.id}}">
         <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
-        <img src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
+        <img  *ngIf="park.pictures.length" src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
         <div class="title-wrapper">
           <span class="name">{{park.name}}</span>
           <span>{{park.address}}</span>
         </div>
-          <div *ngIf="park.number_of_reports" class="report-wrapper" matTooltip="Reports" matTooltipPosition="before">
+        <div class="report-wrapper">
+          <div *ngIf="park.number_of_reports" matTooltip="Reports" matTooltipPosition="before">
             <mat-chip color="primary" selected="true">{{park.number_of_reports}}</mat-chip>
           </div>
+          <div *ngIf="park.number_of_suggestions"matTooltip="Suggestions" matTooltipPosition="before">
+            <mat-chip color="accent" selected="true">{{park.number_of_suggestions}}</mat-chip>
+          </div>
+        </div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-tab>
   <mat-tab label="Parks suggested by users">
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile
-        *ngFor="let park of userCreatedParks" class="park-wrapper" routerLink="/user_created_parks/{{park.id}}">
+        *ngFor="let park of userCreatedParks" class="park-wrapper" routerLink="/suggested_parks/{{park.id}}">
         <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
         <img *ngIf="park.pictures.length" src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
         <div class="title-wrapper">

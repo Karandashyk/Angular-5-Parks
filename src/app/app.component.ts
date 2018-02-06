@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { IUser } from './_models/index';
 import { AlertService, AuthenticationService } from './_services/index';
 
 @Component({
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit  {
     {text: 'Export', route: '/export'}
   ];
   auth_token: string;
-  // users: IUser[] = [];
   isLoggedIn = false;
   isLoggedIn$: Observable<boolean>;
 

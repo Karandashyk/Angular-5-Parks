@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EACV,aAAa,EAAE,IAAI",
+"sources": ["suggestions-dialog.scss"],
+"names": [],
+"file": "suggestions-dialog.css"
+}
