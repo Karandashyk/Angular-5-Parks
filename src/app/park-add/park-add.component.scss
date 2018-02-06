@@ -1,0 +1,79 @@
+$light-grey: rgb(245,245,245);
+$light-light-grey: #fafafa;
+
+.content-header {
+  .save {
+    float: right;
+    top: 5px;
+  }
+  .input-width {
+    min-width: 100px;
+    max-width: 75%;
+  }
+}
+.sub-content-header {
+  .add {
+    float: right;
+    top: -9px;
+  }
+}
+.material-icons.md-18 {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  margin-left: -5px;
+  margin-top: -2px;
+  margin-right: 2px;
+}
+.material-icons.md-16 {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  &.clear {
+    top: -1px;
+    margin-left: 20px;
+  }
+}
+.add-park-info {
+  padding: 0 15px;
+  &.padding {
+    padding: 15px;
+  }
+  .mat-form-field-infix {
+    padding: 0;
+    border-top: 0;
+  }
+  .input-width {
+    width: 35px;
+  }
+  .input-full-width {
+    width: 100%;
+  }
+}
+agm-map {
+  height: 300px;
+}
+.equipment-wrapper {
+  img {
+    height: 100%;
+    width: 100%;
+    margin-top: -20px;
+  }
+  .title-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    background: $light-light-grey;
+    padding-bottom: 10px;
+    padding-top: 2px;
+    span {
+      text-align: center;
+      display: block;
+      font-size: 15px;
+    }
+  }
+}

@@ -10,7 +10,26 @@ $light-light-grey: #fafafa;
     max-width: 75%;
   }
 }
-
+.sub-content-header {
+  .add {
+    float: right;
+    top: -9px;
+  }
+}
+button {
+  mat-chip {
+    &:focus {
+      outline: none;
+    }
+    font-size: 12px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 1px;
+  }
+}
 .mat-input-element:disabled {
   color: inherit;
 }
@@ -52,23 +71,14 @@ agm-map {
   height: 300px;
 }
 .equipment-wrapper {
-  img {
-    height: 100%;
-    width: 100%;
-    margin-top: -20px;
+  .mat-card-title {
+    margin: 0;
   }
-  .title-wrapper {
-    width: 100%;
-    position: absolute;
-    bottom: -5px;
-    background: $light-light-grey;
-    padding-bottom: 10px;
-    padding-top: 2px;
-    span {
-      text-align: center;
-      display: block;
-      font-size: 15px;
-    }
+  .mat-card-header-text {
+    margin: 0 auto;
+  }
+  .mat-card {
+    padding: 20px;
   }
 }
 .report-wrapper {

@@ -12,12 +12,13 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService, ParkService } from './_services/index';
-import { ParksComponent } from './parks/index';
+import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
 import { EquipmentComponent } from './equipment/index';
 import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
-import { ParkDetailComponent } from './park-detail/park-detail.component';
+import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent } from './park-detail/index';
+import { ParkAddComponent } from './park-add/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -37,7 +38,7 @@ import { AgmCoreModule } from '@agm/core';
     ImageUploadModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD84bDJZmR_LAlNNehLDaZ5EgULW0Q3wC4'
-    })
+    }),
   ],
   declarations: [
     AppComponent,
@@ -48,7 +49,11 @@ import { AgmCoreModule } from '@agm/core';
     UsersComponent,
     ParkDetailComponent,
     LoginComponent,
+    ParkAddComponent,
+    SuggestedParkDetailComponent,
+    SuggestionsDialogComponent, AddDialogComponent
   ],
+  entryComponents: [SuggestionsDialogComponent, AddDialogComponent],
   providers: [
     AuthGuard,
     AlertService,

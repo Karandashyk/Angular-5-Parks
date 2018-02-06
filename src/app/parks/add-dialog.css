@@ -1,0 +1,14 @@
+.content-header .input-width {
+  min-width: 100px;
+  max-width: 75%; }
+
+agm-map {
+  height: 300px; }
+
+mat-divider {
+  margin-bottom: 10px; }
+
+.input-full-width {
+  width: 100%; }
+
+/*# sourceMappingURL=add-dialog.css.map */

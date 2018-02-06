@@ -1,9 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { IPark, IReport } from '../_models/index';
+import { INewPark, IPark, IReport } from '../_models/index';
 import { ParkService } from '../_services/index';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ParkService } from '../_services/index';
 
 export class ParkDetailComponent implements OnInit {
   @Input() park: IPark;
-  @Input() reports: IReport[];
+  @Input() reports: IReport[] = [];
 
   private id: string;
   private pictures: string[] = [];
@@ -28,13 +29,26 @@ export class ParkDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private parkService: ParkService,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getPark();
     this.getReports();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SuggestionsDialogComponent, {
+      width: '800px',
+      data: { id: this.id, park: this.park }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      // this.animal = result;
+    });
   }
 
   getPark(): void {
@@ -82,16 +96,50 @@ export class ParkDetailComponent implements OnInit {
     this.park.coordinates[1] = $event.coords.lng;
   }
 
-
   save(): void {
     const park = {
-        name: this.park.name,
-        description: this.park.description,
-        latitude: this.park.coordinates[0],
-        longitude: this.park.coordinates[1],
-        year_built: this.park.year_built
+      name: this.park.name,
+      description: this.park.description,
+      latitude: this.park.coordinates[0],
+      longitude: this.park.coordinates[1],
+      year_built: this.park.year_built
     };
     this.parkService.updatePark(this.id, park)
       .subscribe( () => { this.getPark(); });
   }
+}
+
+
+
+@Component({
+  templateUrl: 'suggestions-dialog.html',
+  styleUrls: ['suggestions-dialog.scss']
+})
+export class SuggestionsDialogComponent implements OnInit {
+
+  suggestions: IPark[] = [];
+
+  constructor(
+    public dialogRef: MatDialogRef<SuggestionsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private parkService: ParkService
+  ) { }
+
+  ngOnInit(): void {
+    this.getSuggestions();
+  }
+
+  compareObj(suggestion: IPark): boolean {
+    return JSON.stringify(this.data.park) === JSON.stringify(suggestion);
+  }
+
+  getSuggestions(): void {
+    this.parkService.getParkSuggestions(this.data.id)
+      .subscribe(suggestions => {this.suggestions = suggestions; console.log(this.suggestions); });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { IUser } from '../_models/index';
 import { UserService } from '../_services/index';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -11,6 +12,11 @@ import { UserService } from '../_services/index';
 
 export class UsersComponent implements OnInit {
   users: IUser[] = [];
+  displayedColumns = ['full_name', 'gender', 'age', 'email', 'delete'];
+  dataSource: any;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService) {}
 
@@ -19,10 +25,17 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.delete(id).subscribe(() => { this.loadAllUsers(); });
+    this.userService.deleteUser(id)
+      .subscribe(() => { this.loadAllUsers(); });
   }
 
   private loadAllUsers() {
-    this.userService.getAll().subscribe(users => { this.users = users; });
+    this.userService.getUsers()
+      .subscribe(users => {
+        this.users = users;
+        this.dataSource = new MatTableDataSource(users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
 }

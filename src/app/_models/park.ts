@@ -5,7 +5,7 @@ export interface IPark {
   address: string;
   city: string;
   coordinates: [number, number];
-  year_built: number;
+  year_built: string;
   rating: number;
   pictures: [
     {
@@ -22,4 +22,5 @@ export interface IPark {
     }
     ];
   number_of_reports: number;
+  number_of_suggestions: number;
 }

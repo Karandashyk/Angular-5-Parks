@@ -50,20 +50,21 @@ a:focus, a:hover {
 }
 
 owl-carousel {
-  .thumbnail-image {
-    width: 100%;
-    &:hover:before {
-      position: absolute;
-      font-size: 30px;
-      text-align: center;
-      padding: 40px;
-      content: '\00d7';
+  .owl-item {
+    .thumbnail-image {
       width: 100%;
-      height: 100%;
-      background-color: rgba(245,245,245, 0.5);
+    }
+    .material-icons {
+      display: none;
+    }
+    &:hover .material-icons {
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      cursor: pointer;
     }
   }
-
   .owl-nav {
     margin-top: 0 !important;
   }
@@ -78,15 +79,28 @@ owl-carousel {
       top: 40%;
     }
   }
-
   .owl-prev {
     left: 10px;
   }
-
   .owl-next {
     right: -20px;
   }
 }
+mat-expansion-panel {
+  owl-carousel {
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    .owl-prev {
+      left: -5px;
+    }
+    .owl-next {
+      right: -5px;
+    }
+  }
+}
+
 image-upload {
   .img-ul {
     height: 60px;
@@ -118,5 +132,34 @@ image-upload {
   .mat-form-field-infix {
     padding: 0;
     border-top: 0;
+  }
+}
+.add-park-input {
+  .mat-focused .mat-form-field-label {
+    font-size: 10px;
+  }
+  .mat-form-field-label {
+    font-size: 10px;
+  }
+  .mat-empty{
+    font-size: inherit;
+  }
+}
+.equipment-wrapper {
+  .mat-card-title {
+    margin: 0;
+    text-align: center;
+  }
+  .mat-card-header-text {
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  .mat-card {
+    box-sizing: content-box;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
   }
 }

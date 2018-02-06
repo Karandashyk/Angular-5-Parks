@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Suggestions</h1>
+<div mat-dialog-content>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let suggestion of suggestions; let i = index;">
+      <mat-expansion-panel-header *ngIf="compareObj(suggestion)">
+        <mat-panel-title>
+          Suggestion {{i+1}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <button mat-button>Apply</button>
+      <button mat-button>Delete</button>
+      <mat-list>
+        <mat-list-item *ngIf="data.park.name != suggestion.name">
+          Change name to: {{suggestion.name}}
+        </mat-list-item>
+        <mat-list-item *ngIf="data.park.year_built != suggestion.year_built">
+          Change year built to: {{suggestion.year_built}}
+        </mat-list-item>
+        <mat-list-item *ngIf="data.park.description != suggestion.description">
+          Change description to: {{suggestion.description}}
+        </mat-list-item>
+        <mat-list-item *ngIf="data.park.address != suggestion.address">
+          Change description to: {{suggestion.address}}
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-divider></mat-divider>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+</div>
+<!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Close</button>-->

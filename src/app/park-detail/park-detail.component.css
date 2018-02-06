@@ -4,6 +4,21 @@
 .content-header .input-width {
   max-width: 75%; }
 
+.sub-content-header .add {
+  float: right;
+  top: -9px; }
+
+button mat-chip {
+  font-size: 12px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: relative;
+  bottom: 1px; }
+  button mat-chip:focus {
+    outline: none; }
+
 .mat-input-element:disabled {
   color: inherit; }
 
@@ -40,21 +55,12 @@
 agm-map {
   height: 300px; }
 
-.equipment-wrapper img {
-  height: 100%;
-  width: 100%;
-  margin-top: -20px; }
-.equipment-wrapper .title-wrapper {
-  width: 100%;
-  position: absolute;
-  bottom: -5px;
-  background: #fafafa;
-  padding-bottom: 10px;
-  padding-top: 2px; }
-  .equipment-wrapper .title-wrapper span {
-    text-align: center;
-    display: block;
-    font-size: 15px; }
+.equipment-wrapper .mat-card-title {
+  margin: 0; }
+.equipment-wrapper .mat-card-header-text {
+  margin: 0 auto; }
+.equipment-wrapper .mat-card {
+  padding: 20px; }
 
 .report-wrapper {
   font-size: 15px;
