@@ -1,0 +1,38 @@
+$light-grey: rgb(245,245,245);
+
+.equipment-wrapper {
+  .mat-card-title {
+    margin: 0;
+    text-align: center;
+  }
+  .mat-card-header-text {
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  .mat-card {
+    box-sizing: content-box;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    &.example-card {
+      width: 100%;
+    }
+  }
+}
+mat-grid-tile {
+  .material-icons.md-18 {
+    display: none;
+  }
+  &:hover .material-icons.md-18 {
+    display: block;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+}
+

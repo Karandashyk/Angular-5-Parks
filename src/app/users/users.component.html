@@ -1,4 +1,6 @@
 <div class="content-header">Users</div>
+<mat-slide-toggle checked="display" (change)="updateSettings($event)">Show users weight ang height</mat-slide-toggle>
+<mat-divider></mat-divider>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>
 

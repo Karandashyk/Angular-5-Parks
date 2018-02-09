@@ -6,4 +6,9 @@
   left: 50%;
   cursor: pointer; }
 
+mat-slide-toggle {
+  float: right;
+  margin-right: 20px;
+  margin-top: 5px; }
+
 /*# sourceMappingURL=users.component.css.map */

@@ -1,3 +1,28 @@
+.equipment-wrapper .mat-card-title {
+  margin: 0;
+  text-align: center; }
+.equipment-wrapper .mat-card-header-text {
+  margin: 0 auto;
+  margin-top: 5px; }
+.equipment-wrapper .mat-card {
+  box-sizing: content-box;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center; }
+  .equipment-wrapper .mat-card.example-card {
+    width: 100%; }
 
+mat-grid-tile .material-icons.md-18 {
+  display: none; }
+mat-grid-tile:hover .material-icons.md-18 {
+  display: block;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: 15px;
+  right: 10px; }
 
 /*# sourceMappingURL=equipment.component.css.map */

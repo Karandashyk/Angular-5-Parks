@@ -2,6 +2,7 @@
   float: right;
   top: 5px; }
 .content-header .input-width {
+  min-width: 100px;
   max-width: 75%; }
 
 .sub-content-header .add {
@@ -54,13 +55,6 @@ button mat-chip {
 
 agm-map {
   height: 300px; }
-
-.equipment-wrapper .mat-card-title {
-  margin: 0; }
-.equipment-wrapper .mat-card-header-text {
-  margin: 0 auto; }
-.equipment-wrapper .mat-card {
-  padding: 20px; }
 
 .report-wrapper {
   font-size: 15px;

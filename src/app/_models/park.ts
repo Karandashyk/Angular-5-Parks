@@ -24,3 +24,13 @@ export interface IPark {
   number_of_reports: number;
   number_of_suggestions: number;
 }
+
+export interface INewPark {
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  year_built: string;
+  category_ids: string[];
+  equipment_ids: string[];
+}

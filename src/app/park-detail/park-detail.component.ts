@@ -44,11 +44,6 @@ export class ParkDetailComponent implements OnInit {
       width: '800px',
       data: { id: this.id, park: this.park }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      // this.animal = result;
-    });
   }
 
   getPark(): void {
@@ -112,8 +107,8 @@ export class ParkDetailComponent implements OnInit {
 
 
 @Component({
-  templateUrl: 'suggestions-dialog.html',
-  styleUrls: ['suggestions-dialog.scss']
+  templateUrl: 'dialog/suggestions-dialog.html',
+  styleUrls: ['dialog/suggestions-dialog.scss']
 })
 export class SuggestionsDialogComponent implements OnInit {
 

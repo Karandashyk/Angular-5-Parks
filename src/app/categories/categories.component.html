@@ -1,0 +1,16 @@
+<div class="content-header">Categories</div>
+<mat-divider></mat-divider>
+<div class="categories-wrapper">
+<mat-form-field>
+  <input matInput placeholder="Category name" [(ngModel)]="category">
+</mat-form-field>
+<button mat-button (click)="addCategory(category)">Add</button>
+  <mat-chip-list>
+    <mat-chip
+      *ngFor="let category of categories"
+      [removable]="true" (remove)="deleteCategory(category.id)">
+      {{category.name}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>

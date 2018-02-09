@@ -1,7 +1,7 @@
 <div *ngIf="park">
-  <div class="content-header">
+  <div class="content-header name">
     <mat-form-field class="input-width" [style.width.px]="park.name.length * 20">
-      <input matInput [(disabled)]="edit.name" [(ngModel)]="park.name">
+      <input matInput [(disabled)]="edit.name" [(ngModel)]="park.name" placeholder="Name">
     </mat-form-field>
     <div *ngIf="edit.name" matTooltip="Edit" matTooltipPosition="after">
       <mat-icon class="material-icons md-16" (click)="edit.name = false">edit</mat-icon>
@@ -102,10 +102,6 @@
         </mat-card-header>
         <img mat-card-image src="http://138.68.174.118{{eq.picture}}" alt="preview">
       </mat-card>
-      <!--<img src="http://138.68.174.118{{eq.picture}}" alt="preview">-->
-      <!--<div class="title-wrapper">-->
-        <!--<span class="name">{{eq.name}}</span>-->
-      <!--</div>-->
     </mat-grid-tile>
   </mat-grid-list>
 

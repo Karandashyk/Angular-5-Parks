@@ -1,10 +1,20 @@
 <div class="content-header">Equipment</div>
-<button mat-button>Add equipment</button>
-<button mat-button>Import</button>
+<button mat-button (click)="openDialog()">Add equipment</button>
 <mat-divider></mat-divider>
-<!--<ul>-->
-  <!--<li *ngFor="let user of users">-->
-    <!--{{user.username}} ({{user.firstName}} {{user.lastName}})-->
-    <!-- - <a (click)="deleteUser(user.id)">Delete</a>-->
-  <!--</li>-->
-<!--</ul>-->
+<mat-grid-list cols="6" rowHeight="1:1">
+  <mat-grid-tile
+    *ngFor="let eq of equipment" class="equipment-wrapper">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{eq.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="http://138.68.174.118{{eq.picture}}" alt="preview">
+    </mat-card>
+    <mat-icon class="material-icons md-18" (click)="deleteEquipment(eq.id)">delete</mat-icon>
+  </mat-grid-tile>
+  <!--<mat-grid-tile class="equipment-wrapper">-->
+    <!--<mat-card class="example-card">-->
+      <!--<mat-icon class="material-icons md-24">add</mat-icon>-->
+    <!--</mat-card>-->
+  <!--</mat-grid-tile>-->
+</mat-grid-list>

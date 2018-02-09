@@ -63,12 +63,12 @@ owl-carousel .owl-prev {
 owl-carousel .owl-next {
   right: -20px; }
 
-mat-expansion-panel owl-carousel .row {
+.dialog owl-carousel .row {
   margin-right: 0;
   margin-left: 0; }
-mat-expansion-panel owl-carousel .owl-prev {
+.dialog owl-carousel .owl-prev {
   left: -5px; }
-mat-expansion-panel owl-carousel .owl-next {
+.dialog owl-carousel .owl-next {
   right: -5px; }
 
 image-upload .img-ul {
@@ -91,11 +91,11 @@ image-upload .img-ul {
   padding: 0;
   border-top: 0; }
 
-.add-park-input .mat-focused .mat-form-field-label {
-  font-size: 10px; }
-.add-park-input .mat-form-field-label {
-  font-size: 10px; }
-.add-park-input .mat-empty {
+.name .mat-focused .mat-form-field-label {
+  font-size: 8px; }
+.name .mat-form-field-label {
+  font-size: 8px; }
+.name .mat-empty {
   font-size: inherit; }
 
 .equipment-wrapper .mat-card-title {

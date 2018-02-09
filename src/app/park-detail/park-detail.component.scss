@@ -7,6 +7,7 @@ $light-light-grey: #fafafa;
     top: 5px;
   }
   .input-width {
+    min-width: 100px;
     max-width: 75%;
   }
 }
@@ -69,17 +70,6 @@ button {
 }
 agm-map {
   height: 300px;
-}
-.equipment-wrapper {
-  .mat-card-title {
-    margin: 0;
-  }
-  .mat-card-header-text {
-    margin: 0 auto;
-  }
-  .mat-card {
-    padding: 20px;
-  }
 }
 .report-wrapper {
   font-size: 15px;

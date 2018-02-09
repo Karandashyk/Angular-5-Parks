@@ -11,10 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
-import { AlertService, AuthenticationService, UserService, ParkService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, ParkService, EquipmentService, CategoryService } from './_services/index';
 import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
-import { EquipmentComponent } from './equipment/index';
+import { EquipmentComponent, AddEquipmentDialogComponent } from './equipment/index';
 import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent } from './park-detail/index';
@@ -22,6 +22,7 @@ import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogCom
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
+import {CategoriesComponent} from './categories/index';
 
 
 
@@ -49,15 +50,18 @@ import { AgmCoreModule } from '@agm/core';
     ParkDetailComponent,
     LoginComponent,
     SuggestedParkDetailComponent,
-    SuggestionsDialogComponent, AddDialogComponent
+    SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent,
+    CategoriesComponent
   ],
-  entryComponents: [SuggestionsDialogComponent, AddDialogComponent],
+  entryComponents: [SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent],
   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
     ParkService,
+    EquipmentService,
+    CategoryService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

@@ -1,4 +1,10 @@
 export interface IEquipment {
-  id: number;
-  title: string;
+  id: string;
+  name: string;
+  picture: string;
+}
+
+export interface INewEquipment {
+  name: string;
+  picture: string;
 }

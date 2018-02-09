@@ -46,8 +46,8 @@ export class ParksComponent implements OnInit {
 
 
 @Component({
-  templateUrl: 'add-dialog.html',
-  styleUrls: ['add-dialog.scss']
+  templateUrl: 'dialog/add-park-dialog.html',
+  styleUrls: ['dialog/add-park-dialog.scss']
 })
 export class AddDialogComponent implements OnInit {
 
