@@ -41,6 +41,10 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
+            # Fix host authenticity
+            - run:
+                name: Fix host authenticity
+                command: ssh-keyscan parkene.wpx.no >> ~/.ssh/known_hosts
             # deploy
             - run:
                 name: Deploy
