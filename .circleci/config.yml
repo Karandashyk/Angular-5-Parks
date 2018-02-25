@@ -33,6 +33,9 @@ jobs:
             # Build project with different configuration based on
             # the current branch
             - run:
+                name: Install Angular cli
+                command: npm install -g @angular/cli
+            - run:
                 name: Building
                 command: |
                     ng build -prod
