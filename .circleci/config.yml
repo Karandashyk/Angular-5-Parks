@@ -34,7 +34,7 @@ jobs:
             # the current branch
             - run:
                 name: Install Angular cli
-                command: npm install -g @angular/cli
+                command: sudo npm install -g @angular/cli
             - run:
                 name: Building
                 command: |
