@@ -49,6 +49,10 @@ jobs:
             - run:
                 name: Debug
                 command: ls -laFG
+                
+            - run:
+                name: Debug
+                command: pwd
             # deploy
             - run:
                 name: Deploy
