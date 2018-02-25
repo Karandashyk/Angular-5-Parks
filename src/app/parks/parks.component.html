@@ -7,8 +7,8 @@
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile
         *ngFor="let park of parks" class="park-wrapper" routerLink="/parks/{{park.id}}">
-        <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
-        <img  *ngIf="park.pictures.length" src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
+        <!--[style.background.url]="'http://185.57.255.205:8000'+park.pictures[0].preview">-->
+        <img  *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].preview}}" alt="preview">
         <div class="title-wrapper">
           <span class="name">{{park.name}}</span>
           <span>{{park.address}}</span>
@@ -28,8 +28,8 @@
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile
         *ngFor="let park of userCreatedParks" class="park-wrapper" routerLink="/suggested_parks/{{park.id}}">
-        <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
-        <img *ngIf="park.pictures.length" src="http://138.68.174.118{{park.pictures[0].preview}}" alt="preview">
+        <!--[style.background.url]="'http://185.57.255.205:8000'+park.pictures[0].preview">-->
+        <img *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].preview}}" alt="preview">
         <div class="title-wrapper">
           <span class="name">{{park.name}}</span>
           <span>{{park.address}}</span>

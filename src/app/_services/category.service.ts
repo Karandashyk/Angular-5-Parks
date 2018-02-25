@@ -20,7 +20,7 @@ export class CategoryService {
     private router: Router
   ) { }
 
-  private categoriesUrl = 'http://138.68.174.118/admin/categories';  // URL to web api
+  private categoriesUrl = 'http://185.57.255.205:8000/admin/categories';  // URL to web api
 
   /** GET categories from the server */
   getCategories (): Observable<ICategory[]> {

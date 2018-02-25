@@ -20,8 +20,8 @@ export class UserService {
     private router: Router
   ) { }
 
-  private usersUrl = 'http://138.68.174.118/admin/users';  // URL to web api
-  private settingsUrl = 'http://138.68.174.118/admin/settings';  // URL to web api
+  private usersUrl = 'http://185.57.255.205:8000/admin/users';  // URL to web api
+  private settingsUrl = 'http://185.57.255.205:8000/admin/settings';  // URL to web api
 
   /** GET users from the server */
   getUsers (): Observable<IUser[]> {

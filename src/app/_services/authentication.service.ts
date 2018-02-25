@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private authUrl = 'http://138.68.174.118/admin/authenticate';  // URL to web api
+  private authUrl = 'http://185.57.255.205:8000/admin/authenticate';  // URL to web api
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }

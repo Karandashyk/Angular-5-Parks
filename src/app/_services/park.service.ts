@@ -20,10 +20,10 @@ export class ParkService {
     private router: Router
   ) { }
 
-  private parksUrl = 'http://138.68.174.118/admin/parks';  // URL to web api
-  private suggestionsUrl = 'http://138.68.174.118/admin/suggestions';  // URL to web api
-  private reportsUrl = 'http://138.68.174.118/admin/reports/';  // URL to web api
-  private pictureUrl = 'http://138.68.174.118/admin/pictures/';  // URL to web api
+  private parksUrl = 'http://185.57.255.205:8000/admin/parks';  // URL to web api
+  private suggestionsUrl = 'http://185.57.255.205:8000/admin/suggestions';  // URL to web api
+  private reportsUrl = 'http://185.57.255.205:8000/admin/reports/';  // URL to web api
+  private pictureUrl = 'http://185.57.255.205:8000/admin/pictures/';  // URL to web api
 
   /** GET parks from the server */
   getParks (): Observable<IPark[]> {

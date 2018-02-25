@@ -19,7 +19,7 @@ export class EquipmentService {
     private router: Router
   ) { }
 
-  private equipmentUrl = 'http://138.68.174.118/admin/equipment';  // URL to web api
+  private equipmentUrl = 'http://185.57.255.205:8000/admin/equipment';  // URL to web api
 
   /** GET equipment from the server */
   getEquipment(): Observable<IEquipment[]> {
