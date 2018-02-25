@@ -48,4 +48,4 @@ jobs:
             # deploy
             - run:
                 name: Deploy
-                command: scp -rp /home/circleci/project/dist debian@parkene.wpx.no:apps/parks-frontend/
+                command: scp -rp dist debian@parkene.wpx.no:apps/parks-frontend/
