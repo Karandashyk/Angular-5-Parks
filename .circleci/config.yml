@@ -43,5 +43,5 @@ jobs:
                     - dist
             # deploy
             - run:
-              name: Deploy
-              command: scp -rp dist/ debian@parkene.wpx.no:apps/parks-frontend/
+                name: Deploy
+                command: scp -rp dist/ debian@parkene.wpx.no:apps/parks-frontend/
