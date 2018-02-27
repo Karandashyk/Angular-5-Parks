@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  hide = true;
 
   constructor(
     private route: ActivatedRoute,

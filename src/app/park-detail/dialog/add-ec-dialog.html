@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Add {{data.component}}</h1>
+<div mat-dialog-content>
+
+  <mat-grid-list *ngIf="data.component === 'equipment'" cols="3" rowHeight="1:1">
+    <mat-grid-tile
+      *ngFor="let eq of components" class="equipment-wrapper">
+      <mat-card (click)="select(eq.id)" [class]="isSelected(eq.id) ? 'selected' : ''">
+        <mat-card-header>
+          <mat-card-title>{{eq.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="http://185.57.255.205:8000{{eq.picture}}" alt="preview">
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-chip-list *ngIf="data.component === 'categories'" [(ngModel)]="selectedComponents" multiple>
+    <mat-chip
+      *ngFor="let category of components"
+      color="primary"
+      [selectable]="true"
+      [selected]="isSelected(category.id)"
+      (focus)="select(category.id)">
+      {{category.name}}
+    </mat-chip>
+  </mat-chip-list>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  <button mat-button [mat-dialog-close]="{data:selectedComponents, component: data.component}">Save</button>
+</div>
+<!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Close</button>-->

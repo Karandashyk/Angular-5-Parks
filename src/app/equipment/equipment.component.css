@@ -15,14 +15,15 @@
     width: 100%; }
 
 mat-grid-tile .material-icons.md-18 {
-  display: none; }
+  display: none;
+  cursor: pointer; }
 mat-grid-tile:hover .material-icons.md-18 {
   display: block;
   font-size: 18px;
   height: 18px;
   width: 18px;
   position: absolute;
-  top: 15px;
+  top: 11%;
   right: 10px; }
 
 /*# sourceMappingURL=equipment.component.css.map */

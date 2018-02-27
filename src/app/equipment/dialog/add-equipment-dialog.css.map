@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AACE,4BAAa;EACX,SAAS,EAAE,KAAK;EAChB,SAAS,EAAE,GAAG",
+"mappings": "AAAA,eAAgB;EACd,OAAO,EAAE,MAAM;EACf,gBAAgB,EAAE,WAAW;EAC7B,4BAAa;IACX,KAAK,EAAE,IAAI;;AAGf,YAAa;EACX,aAAa,EAAE,IAAI",
 "sources": ["add-equipment-dialog.scss"],
 "names": [],
 "file": "add-equipment-dialog.css"

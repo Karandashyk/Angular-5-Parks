@@ -1,6 +1,8 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import { IPark, INewPark } from '../_models/index';
+import { IPark, INewPark, ICategory } from '../_models/index';
+import { IEquipment } from '../_models/index';
 import { ParkService } from '../_services/index';
+import { EquipmentService, CategoryService } from '../_services/index';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
@@ -55,6 +57,9 @@ export class AddDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private parkService: ParkService,
+    private equipmentService: EquipmentService,
+    private categoryService: CategoryService,
+
   ) { }
 
   park: INewPark = {
@@ -68,12 +73,16 @@ export class AddDialogComponent implements OnInit {
   };
 
   pictures: string[] = [];
+  equipment: IEquipment[] = [];
+  categories: ICategory[] = [];
 
   ngOnInit() {
     navigator.geolocation.getCurrentPosition(position => {
       this.park.latitude = position.coords.latitude;
       this.park.longitude = position.coords.longitude;
     });
+    this.getEquipment();
+    this.getCategories();
   }
 
   markerDragEnd($event) {
@@ -93,6 +102,50 @@ export class AddDialogComponent implements OnInit {
   deletePicture(picture: string): void {
     const index = this.pictures.indexOf(picture);
     this.pictures.splice(index, 1);
+  }
+
+  getEquipment() {
+    this.equipmentService.getEquipment()
+      .subscribe(equipment => {
+        this.equipment = equipment;
+      });
+  }
+
+  getCategories() {
+    this.categoryService.getCategories()
+      .subscribe(categories => {
+        this.categories = categories;
+      });
+  }
+
+  isEqSelected(id: string): boolean {
+    const index = this.park.equipment_ids.indexOf(id);
+    return index >= 0;
+  }
+
+  selectEq(id: string): void {
+    const index = this.park.equipment_ids.indexOf(id);
+
+    if (index >= 0) {
+      this.park.equipment_ids.splice(index, 1);
+    } else {
+      this.park.equipment_ids.push(id);
+    }
+  }
+
+  isCatSelected(id: string): boolean {
+    const index = this.park.category_ids.indexOf(id);
+    return index >= 0;
+  }
+
+  selectCat(id: string): void {
+    const index = this.park.category_ids.indexOf(id);
+
+    if (index >= 0) {
+      this.park.category_ids.splice(index, 1);
+    } else {
+      this.park.category_ids.push(id);
+    }
   }
 
   onNoClick(): void {

@@ -1,5 +1,5 @@
 <div class="content-header">Users</div>
-<mat-slide-toggle checked="display" (change)="updateSettings($event)">Show users weight ang height</mat-slide-toggle>
+<mat-slide-toggle checked="display" (change)="updateSettings($event)">Show weight ang height to users</mat-slide-toggle>
 <mat-divider></mat-divider>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort>
@@ -36,7 +36,7 @@
   </mat-table>
 
   <mat-paginator #paginator
-                 [pageSize]="10"
+                 [pageSize]="15"
                  [pageSizeOptions]="[5, 10, 20]">
   </mat-paginator>
 </div>

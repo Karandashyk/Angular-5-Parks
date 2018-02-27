@@ -21,6 +21,12 @@ export interface IPark {
       picture: string
     }
     ];
+  categories: [
+    {
+      id: string,
+      name: string,
+    }
+    ];
   number_of_reports: number;
   number_of_suggestions: number;
 }

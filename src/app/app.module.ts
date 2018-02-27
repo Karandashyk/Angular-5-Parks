@@ -17,12 +17,12 @@ import { UsersComponent } from './users/index';
 import { EquipmentComponent, AddEquipmentDialogComponent } from './equipment/index';
 import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
-import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent } from './park-detail/index';
+import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent, AddECDialogComponent } from './park-detail/index';
+import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
-import {CategoriesComponent} from './categories/index';
 
 
 
@@ -50,10 +50,16 @@ import {CategoriesComponent} from './categories/index';
     ParkDetailComponent,
     LoginComponent,
     SuggestedParkDetailComponent,
-    SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent,
+    SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent, AddCategoryDialogComponent, AddECDialogComponent,
     CategoriesComponent
   ],
-  entryComponents: [SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent],
+  entryComponents: [
+    SuggestionsDialogComponent,
+    AddDialogComponent,
+    AddEquipmentDialogComponent,
+    AddCategoryDialogComponent,
+    AddECDialogComponent
+  ],
   providers: [
     AuthGuard,
     AlertService,

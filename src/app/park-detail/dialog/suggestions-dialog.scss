@@ -1,3 +1,30 @@
 mat-divider {
   margin-bottom: 10px;
 }
+.park-info {
+  padding: 15px;
+}
+agm-map {
+  height: 200px;
+}
+.equipment-wrapper {
+  .mat-card-title {
+    margin: 0;
+    text-align: center;
+  }
+  .mat-card-header-text {
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  .mat-card {
+    box-sizing: content-box;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    &.example-card {
+      width: 100%;
+    }
+  }
+}

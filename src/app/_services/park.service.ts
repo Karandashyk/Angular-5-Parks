@@ -65,6 +65,16 @@ export class ParkService {
     return this.http.post(`${this.suggestionsUrl}/${id}/publish`, id);
   }
 
+  /** PUT user created park to the server */
+  applySuggestion (id: string) {
+    return this.http.post(`${this.suggestionsUrl}/${id}/apply`, id);
+  }
+
+  /** DELETE park from the server */
+  deleteSuggestion (id: string) {
+    return this.http.delete(`${this.suggestionsUrl}/${id}`);
+  }
+
   /** DELETE park from the server */
   deletePark (id: string) {
     return this.http.delete(`${this.parksUrl}/${id}`);

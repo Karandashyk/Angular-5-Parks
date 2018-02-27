@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { INewPark, IPark, IReport } from '../_models/index';
-import { ParkService } from '../_services/index';
+import { ParkService, CategoryService, EquipmentService } from '../_services/index';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
@@ -20,11 +20,9 @@ export class ParkDetailComponent implements OnInit {
   private id: string;
   private pictures: string[] = [];
 
-  edit = {
-    name: true,
-    description: true,
-    address: true
-  };
+  edit = true;
+  equipment_ids = [];
+  category_ids = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,11 +42,43 @@ export class ParkDetailComponent implements OnInit {
       width: '800px',
       data: { id: this.id, park: this.park }
     });
+    dialogRef.afterClosed().subscribe(() => this.getPark());
+  }
+
+  openECDialog(component: string): void {
+    let ids = [];
+    if (component === 'categories') {
+        ids = this.category_ids;
+    } else {
+      ids = this.equipment_ids;
+    }
+    const dialogRef = this.dialog.open(AddECDialogComponent, {
+      width: '800px',
+      data: { component: component, ids: ids}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) return;
+      if (result.component === 'categories') {
+        this.category_ids = this.category_ids.concat(result.data);
+        this.save();
+      } else {
+        this.equipment_ids = this.equipment_ids.concat(result.data);
+        this.save();
+      }
+    });
   }
 
   getPark(): void {
     this.parkService.getPark(this.id)
-      .subscribe(park => this.park = park );
+      .subscribe(park => {
+        this.park = park;
+        this.equipment_ids = park.equipment.map(function(eq) {
+            return eq.id;
+        });
+        this.category_ids = park.categories.map(function(cat) {
+          return cat.id;
+        });
+      });
   }
 
   deletePark(): void {
@@ -69,6 +99,16 @@ export class ParkDetailComponent implements OnInit {
   deletePicture(id: string): void {
     this.parkService.deletePicture(id)
       .subscribe(() => { this.getPark(); });
+  }
+
+  deleteEquipment(id: string): void {
+    const index = this.equipment_ids.indexOf(id);
+    this.equipment_ids.splice(index, 1);
+  }
+
+  deleteCategory(id: string): void {
+    const index = this.equipment_ids.indexOf(id);
+    this.equipment_ids.splice(index, 1);
   }
 
   goBack(): void {
@@ -97,7 +137,9 @@ export class ParkDetailComponent implements OnInit {
       description: this.park.description,
       latitude: this.park.coordinates[0],
       longitude: this.park.coordinates[1],
-      year_built: this.park.year_built
+      year_built: this.park.year_built,
+      equipment_ids: this.equipment_ids,
+      category_ids: this.category_ids
     };
     this.parkService.updatePark(this.id, park)
       .subscribe( () => { this.getPark(); });
@@ -126,20 +168,90 @@ export class SuggestionsDialogComponent implements OnInit {
 
   getSuggestions(): void {
     this.parkService.getParkSuggestions(this.data.id)
-      .subscribe(suggestions => {this.suggestions = suggestions; console.log(this.suggestions); });
+      .subscribe(suggestions => {this.suggestions = suggestions;});
+  }
+
+  apply(id: string) {
+    this.parkService.applySuggestion(id)
+      .subscribe(() => this.suggestions = this.suggestions.filter(suggestion => suggestion.id !== id));
+  }
+
+  delete(id: string) {
+    this.parkService.deleteSuggestion(id)
+      .subscribe(() => this.suggestions = this.suggestions.filter(suggestion => suggestion.id !== id));
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  compare(obj1: IPark, obj2: IPark): boolean {
-    for (const p in obj1) {
-      if (typeof (obj1[p]) === 'object') {
-        if (!this.compare(obj1[p], obj2[p])) { return false; }
-      } else if (obj1[p] !== obj2[p]) { return false; }
+  // compare(obj1: IPark, obj2: IPark): boolean {
+  //   for (const p in obj1) {
+  //     if (typeof (obj1[p]) === 'object') {
+  //       if (!this.compare(obj1[p], obj2[p])) { return false; }
+  //     } else if (obj1[p] !== obj2[p]) { return false; }
+  //   }
+  //   return true;
+  // }
+
+}
+
+
+
+
+@Component({
+  templateUrl: 'dialog/add-ec-dialog.html',
+  styleUrls: ['dialog/add-ec-dialog.scss']
+})
+export class AddECDialogComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<AddECDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private equipmentService: EquipmentService,
+    private categoryService: CategoryService
+  ) { }
+
+  components = [];
+  selectedComponents = [];
+
+  ngOnInit(): void {
+    switch (this.data.component) {
+      case 'categories' : {
+        this.categoryService.getCategories()
+          .subscribe(categories => {
+            this.components = categories.filter(cat => this.data.ids.indexOf(cat.id) === -1);
+          });
+        break;
+      }
+      case 'equipment' : {
+        this.equipmentService.getEquipment()
+          .subscribe(equipment => {
+            this.components = equipment.filter(eq => this.data.ids.indexOf(eq.id) === -1);
+          });
+        break;
+      }
     }
-    return true;
   }
 
+
+  isSelected(id: string): boolean {
+    const index = this.selectedComponents.indexOf(id);
+    return index >= 0;
+  }
+
+
+  select(id: string): void {
+    const index = this.selectedComponents.indexOf(id);
+
+    if (index >= 0) {
+      this.selectedComponents.splice(index, 1);
+    } else {
+      this.selectedComponents.push(id);
+    }
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

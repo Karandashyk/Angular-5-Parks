@@ -1,26 +1,30 @@
 <div *ngIf="park">
   <div class="content-header name">
-    <mat-form-field class="input-width" [style.width.px]="park.name.length * 20">
-      <input matInput [(disabled)]="edit.name" [(ngModel)]="park.name" placeholder="Name">
+    <div *ngIf="edit">
+      {{park.name}}
+    </div>
+    <mat-form-field *ngIf="!edit" class="input-width" [style.width.px]="park.name.length * 20">
+      <input matInput [(disabled)]="edit" [(ngModel)]="park.name" placeholder="Name">
     </mat-form-field>
-    <div *ngIf="edit.name" matTooltip="Edit" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.name = false">edit</mat-icon>
-    </div>
-    <div *ngIf="!edit.name" matTooltip="Save" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.name = true; save()">done</mat-icon>
-    </div>
+    <!--<div *ngIf="edit.name" matTooltip="Edit" matTooltipPosition="after">-->
+      <!--<mat-icon class="material-icons md-16" (click)="edit.name = false">edit</mat-icon>-->
+    <!--</div>-->
+    <!--<div *ngIf="!edit.name" matTooltip="Save" matTooltipPosition="after">-->
+      <!--<mat-icon class="material-icons md-16" (click)="edit.name = true; save()">done</mat-icon>-->
+    <!--</div>-->
     <div *ngIf="park.rating" matTooltip="Rating" matTooltipPosition="after">
       <mat-chip color="primary" selected="true">{{park.rating.toFixed(1)}}</mat-chip>
     </div>
     <button mat-button class="delete" (click)="deletePark()">Delete</button>
+    <button *ngIf="edit" mat-button class="delete" (click)="edit = false">Edit</button>
+    <button *ngIf="!edit" mat-button class="delete" (click)="edit = true; save()">Save</button>
+
   </div>
   <button mat-button (click)="goBack()"><mat-icon class="material-icons md-18">arrow_back</mat-icon>Go back</button>
   <button mat-button *ngIf="park.number_of_suggestions" (click)="openDialog()">
     Suggestions
     <mat-chip color="accent" selected="true">{{park.number_of_suggestions}}</mat-chip>
   </button>
-
-  <!--<button mat-button (click)="save()">Save</button>-->
   <mat-divider></mat-divider>
 
   <owl-carousel
@@ -30,13 +34,13 @@
     [carouselClasses]="['owl-theme', 'row', 'sliding']">
   <div class="item" *ngFor="let picture of park.pictures">
     <div class="thumbnail-image"
-         [ngStyle]="{'background': 'url(http://185.57.255.205:8000' + picture.preview + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
+         [ngStyle]="{'background': 'url(http://185.57.255.205:8000/' + picture.preview + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
     </div>
-    <mat-icon class="material-icons md-18" (click)="deletePicture(picture.id)">delete</mat-icon>
+    <mat-icon *ngIf="!edit" class="material-icons md-18" (click)="deletePicture(picture.id)">delete</mat-icon>
   </div>
   </owl-carousel>
 
-  <image-upload
+  <image-upload *ngIf="!edit"
     [buttonCaption]="'Add Images'"
     [preview]="false"
     (removed)="onRemoved($event)"
@@ -44,36 +48,47 @@
   ></image-upload>
 
   <div class="sub-content-header">
-    Description
-    <div *ngIf="edit.description" matTooltip="Edit" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.description = false">edit</mat-icon>
-    </div>
-    <div *ngIf="!edit.description" matTooltip="Save" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.description = true; save()">done</mat-icon>
-    </div>
+    Categories
+    <button *ngIf="!edit" mat-button class="add" (click)="openECDialog('categories')">Add</button>
   </div>
   <div class="park-info">
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let category of park.categories"
+        [removable]="true" (remove)="deleteCategory(category.id)">
+        {{category.name}}
+        <mat-icon matChipRemove *ngIf="!edit">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div class="sub-content-header">
+    Description
+  </div>
+  <div class="park-info">
+    <div *ngIf="edit">
+      Year built: {{park.year_built}}<br>
+      {{park.description}}
+    </div>
+    <div *ngIf="!edit">
     Year built:
     <mat-form-field class="input-width">
-      <input matInput [(disabled)]="edit.description" [(ngModel)]="park.year_built" type="text" maxlength="4">
+      <input matInput [(disabled)]="edit" [(ngModel)]="park.year_built" type="text" maxlength="4">
     </mat-form-field><br>
     <mat-form-field class="input-full-width">
       <textarea matInput
                 matTextareaAutosize
-                [(disabled)]="edit.description"
+                [(disabled)]="edit"
                 [(ngModel)]="park.description"></textarea>
     </mat-form-field>
+    </div>
   </div>
 
   <div class="sub-content-header">
     Address
-    <div *ngIf="edit.address" matTooltip="Edit" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.address = false">edit</mat-icon>
-    </div>
-    <div *ngIf="!edit.address" matTooltip="Save" matTooltipPosition="after">
-      <mat-icon class="material-icons md-16" (click)="edit.address = true; save()">done</mat-icon>
-    </div>  </div>
-  <div class="park-info">
+    <span *ngIf="!edit" class="hint">Place marker</span>
+  </div>
+  <div class="park-info" *ngIf="edit" >
     <span class="bold">{{park.address}}</span>
   </div>
   <agm-map
@@ -84,14 +99,14 @@
     <agm-marker
       [latitude]="park.coordinates[0]"
       [longitude]="park.coordinates[1]"
-      [markerDraggable]="!edit.address"
+      [markerDraggable]="!edit"
       (dragEnd)="markerDragEnd($event)">
     </agm-marker>
   </agm-map>
 
   <div class="sub-content-header">
     Equipment
-    <button mat-button class="add" (click)="addEquipment()">Add</button>
+    <button *ngIf="!edit" mat-button class="add" (click)="openECDialog('equipment')">Add</button>
   </div>
   <mat-grid-list cols="6" rowHeight="1:1" *ngIf="park.equipment">
     <mat-grid-tile
@@ -101,6 +116,7 @@
           <mat-card-title>{{eq.name}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="http://185.57.255.205:8000{{eq.picture}}" alt="preview">
+        <mat-icon *ngIf="!edit" class="material-icons md-18" (click)="deleteEquipment(eq.id)">delete</mat-icon>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

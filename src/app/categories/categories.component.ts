@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { ICategory } from '../_models/index';
 import { CategoryService } from '../_services/index';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -12,9 +13,9 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
+    public dialog: MatDialog
   ) {}
 
-  category = '';
   categories: ICategory[] = [];
 
 
@@ -22,12 +23,14 @@ export class CategoriesComponent implements OnInit {
     this.getCategories();
   }
 
-  addCategory(category: string): void {
-    this.categoryService.addCategory(category)
-      .subscribe( () => {
-        this.getCategories();
-        this.category = '';
-      });
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddCategoryDialogComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getCategories();
+    });
   }
 
   getCategories() {
@@ -40,6 +43,35 @@ export class CategoriesComponent implements OnInit {
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id)
       .subscribe(() => { this.getCategories(); });
+  }
+
+}
+
+
+
+
+@Component({
+  templateUrl: 'dialog/add-category-dialog.html',
+  styleUrls: ['dialog/add-category-dialog.scss']
+})
+export class AddCategoryDialogComponent {
+
+  constructor(
+    private categoryService: CategoryService,
+    public dialogRef: MatDialogRef<AddCategoryDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  category = '';
+
+  addCategory(category: string): void {
+    this.categoryService.addCategory(category)
+      .subscribe( () => {
+        this.dialogRef.close();
+      });
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

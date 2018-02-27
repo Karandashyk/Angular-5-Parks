@@ -1,6 +1,6 @@
 $light-grey: rgb(245,245,245);
 $light-light-grey: #fafafa;
-
+$hint: rgba(0,0,0,.54);
 .content-header {
   .delete {
     float: right;
@@ -15,6 +15,11 @@ $light-light-grey: #fafafa;
   .add {
     float: right;
     top: -9px;
+  }
+  .hint {
+    color: $hint;
+    font-size: 13px;
+    float: right;
   }
 }
 button {
@@ -76,5 +81,41 @@ agm-map {
   height: 30px;
   .list-item {
     padding-right: 10px;
+  }
+}
+mat-grid-tile {
+  .material-icons.md-18 {
+    display: none;
+    cursor: pointer;
+  }
+  &:hover .material-icons.md-18 {
+    display: block;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 11%;
+    right: 10px;
+  }
+}
+.equipment-wrapper {
+  .mat-card-title {
+    margin: 0;
+    text-align: center;
+  }
+  .mat-card-header-text {
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  .mat-card {
+    box-sizing: content-box;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    &.example-card {
+      width: 100%;
+    }
   }
 }

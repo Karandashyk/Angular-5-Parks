@@ -1,12 +1,12 @@
 <div class="content-header">Categories</div>
+<button mat-button (click)="openDialog()">Add category</button>
 <mat-divider></mat-divider>
 <div class="categories-wrapper">
-<mat-form-field>
-  <input matInput placeholder="Category name" [(ngModel)]="category">
-</mat-form-field>
-<button mat-button (click)="addCategory(category)">Add</button>
+
   <mat-chip-list>
     <mat-chip
+      color="primary"
+      selected="true"
       *ngFor="let category of categories"
       [removable]="true" (remove)="deleteCategory(category.id)">
       {{category.name}}

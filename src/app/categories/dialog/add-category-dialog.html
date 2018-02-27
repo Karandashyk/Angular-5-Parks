@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Add category</h1>
+<div mat-dialog-content class="dialog">
+  <div class="content-header name">
+    <mat-form-field class="input-width">
+      <input matInput [(ngModel)]="category" placeholder="Name">
+    </mat-form-field>
+  </div>
+  <!--<mat-expansion-panel>-->
+    <!--<mat-expansion-panel-header>-->
+      <!--<mat-panel-title>-->
+        <!--Add parks-->
+      <!--</mat-panel-title>-->
+    <!--</mat-expansion-panel-header>-->
+  <!--</mat-expansion-panel>-->
+  <!--<mat-divider></mat-divider>-->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  <button mat-button (click)="addCategory(category)">Save</button>
+</div>

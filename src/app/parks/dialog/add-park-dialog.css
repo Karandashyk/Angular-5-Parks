@@ -11,4 +11,20 @@ mat-divider {
 .input-full-width {
   width: 100%; }
 
-/*# sourceMappingURL=add-dialog.css.map */
+.equipment-wrapper .mat-card-title {
+  margin: 0;
+  text-align: center; }
+.equipment-wrapper .mat-card-header-text {
+  margin: 0 auto;
+  margin-top: 5px; }
+.equipment-wrapper .mat-card {
+  box-sizing: content-box;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center; }
+  .equipment-wrapper .mat-card.example-card {
+    width: 100%; }
+
+/*# sourceMappingURL=add-park-dialog.css.map */
