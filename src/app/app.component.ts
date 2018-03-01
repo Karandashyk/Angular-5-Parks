@@ -11,11 +11,11 @@ import { AlertService, AuthenticationService } from './_services/index';
 export class AppComponent implements OnInit  {
   links = [
     {text: 'Parks', route: '/parks'},
-    {text: 'Users', route: '/users'},
-    {text: 'Surveys', route: '/surveys'},
-    {text: 'Equipment', route: '/equipment'},
     {text: 'Categories', route: '/categories'},
-    {text: 'Export', route: '/export'},
+    {text: 'Equipment', route: '/equipment'},
+    {text: 'Users', route: '/users'},
+    // {text: 'Surveys', route: '/surveys'},
+    // {text: 'Import', route: '/export'},
   ];
   auth_token: string;
   isLoggedIn = false;

@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
-import { AlertService, AuthenticationService, UserService, ParkService, EquipmentService, CategoryService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, ParkService, EquipmentService, CategoryService, ImportExportService } from './_services/index';
 import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
 import { EquipmentComponent, AddEquipmentDialogComponent } from './equipment/index';
@@ -68,6 +68,7 @@ import { AgmCoreModule } from '@agm/core';
     ParkService,
     EquipmentService,
     CategoryService,
+    ImportExportService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

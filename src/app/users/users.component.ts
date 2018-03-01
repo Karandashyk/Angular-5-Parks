@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { IUser, ISetting } from '../_models/index';
-import { UserService } from '../_services/index';
+import { UserService, ImportExportService } from '../_services/index';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-
+import * as fileSaver from 'file-saver';
 @Component({
   moduleId: module.id,
   templateUrl: 'users.component.html',
@@ -19,7 +19,9 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private exportService: ImportExportService
+  ) {}
 
   ngOnInit() {
     this.loadAllUsers();
@@ -41,6 +43,14 @@ export class UsersComponent implements OnInit {
   updateSettings($event) {
     this.userService.updateSettings($event.checked)
       .subscribe(() => { this.getSettings(); });
+  }
+
+  export() {
+    this.exportService.getUsersExport()
+      .subscribe(blob => {
+        const downloadUrl = URL.createObjectURL(blob);
+        window.open(downloadUrl);
+      });
   }
 
   loadAllUsers() {

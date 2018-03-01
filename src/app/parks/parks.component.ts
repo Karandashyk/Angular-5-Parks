@@ -2,7 +2,7 @@ import {Component, OnInit, Inject} from '@angular/core';
 import { IPark, INewPark, ICategory } from '../_models/index';
 import { IEquipment } from '../_models/index';
 import { ParkService } from '../_services/index';
-import { EquipmentService, CategoryService } from '../_services/index';
+import { EquipmentService, CategoryService, ImportExportService } from '../_services/index';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
@@ -17,12 +17,21 @@ export class ParksComponent implements OnInit {
 
   constructor(
     private parkService: ParkService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private exportService: ImportExportService
   ) {}
 
   ngOnInit() {
     this.loadParks();
     this.loadUserCreatedParks();
+  }
+
+  export() {
+    this.exportService.getParksExport()
+      .subscribe(blob => {
+        const downloadUrl = URL.createObjectURL(blob);
+        window.open(downloadUrl);
+      });
   }
 
   openDialog(): void {
