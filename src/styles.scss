@@ -167,3 +167,12 @@ image-upload {
 .mat-dialog-container {
   position: relative;
 }
+
+.mat-horizontal-stepper-header-container:before {
+  content: "";
+  display: block;
+  width: 750px;
+  height: 80px;
+  position: absolute;
+  z-index: 5;
+}

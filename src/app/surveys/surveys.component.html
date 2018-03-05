@@ -17,8 +17,14 @@
 
     <ng-container matColumnDef="published">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Published </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.published}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.published === true ? 'Yes' : 'No'}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="show">
+      <mat-header-cell *matHeaderCellDef class="cell-header-hide">  </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cell-hide" (click)="openSurveyDialog(element.id)"></mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns; let index = i"></mat-row>

@@ -1,0 +1,16 @@
+mat-chip {
+  &:focus {
+    outline: none;
+  }
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+h1 {
+  button {
+    float: right;
+  }
+  div {
+    display: inline;
+  }
+}

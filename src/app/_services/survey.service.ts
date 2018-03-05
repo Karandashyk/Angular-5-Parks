@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ISurvey, INewQuestion, IQuestion } from '../_models/index';
+import { ISurvey, INewQuestion, IFullSurvey } from '../_models/index';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -26,6 +26,10 @@ export class SurveyService {
     return this.http.get<ISurvey[]>(this.surveysUrl);
   }
 
+  getSurvey(id: string) {
+    return this.http.get<IFullSurvey>(`${this.surveysUrl}/${id}`);
+  }
+
   createSurvey (name: string) {
     return this.http.post(this.surveysUrl, { survey: {name: name} } );
   }
@@ -43,7 +47,7 @@ export class SurveyService {
   }
 
   addQuestion(id: string, question: INewQuestion) {
-    return this.http.post<IQuestion>(`${this.surveysUrl}/${id}/questions`, {question: question});
+    return this.http.post(`${this.surveysUrl}/${id}/questions`, {question: question});
   }
 
 }

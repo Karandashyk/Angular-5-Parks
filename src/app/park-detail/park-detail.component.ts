@@ -117,7 +117,7 @@ export class ParkDetailComponent implements OnInit {
   }
 
   mapClicked($event) {
-    if(!this.edit) {
+    if (!this.edit) {
       this.park.coordinates[0] = $event.coords.lat;
       this.park.coordinates[1] = $event.coords.lng;
     }

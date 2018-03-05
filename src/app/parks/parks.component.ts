@@ -87,11 +87,13 @@ export class AddDialogComponent implements OnInit {
   pictures: string[] = [];
   equipment: IEquipment[] = [];
   categories: ICategory[] = [];
+  mapCenter = [0, 0];
 
   ngOnInit() {
     navigator.geolocation.getCurrentPosition(position => {
       this.park.latitude = position.coords.latitude;
       this.park.longitude = position.coords.longitude;
+      this.mapCenter = [position.coords.latitude, position.coords.longitude];
     });
     this.getEquipment();
     this.getCategories();
@@ -158,6 +160,11 @@ export class AddDialogComponent implements OnInit {
     } else {
       this.park.category_ids.push(id);
     }
+  }
+
+  mapClicked($event) {
+      this.park.latitude = $event.coords.lat;
+      this.park.longitude = $event.coords.lng;
   }
 
   onNoClick(): void {

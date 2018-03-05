@@ -1,0 +1,35 @@
+<div *ngIf="survey">
+  <h1 mat-dialog-title>
+    {{survey.name}}
+    <div matTooltip="Number of answers" matTooltipPosition="after">
+      <mat-chip color="accent" selected="true">{{survey.number_of_answers}}</mat-chip>
+    </div>
+    <button mat-button class="delete" (click)="deleteSurvey()">Delete</button>
+    <button *ngIf="!survey.published" mat-button class="delete" (click)="publishSurvey()">Publish</button>
+  </h1>
+  <div mat-dialog-content>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let question of survey.questions; let i = index;">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{i+1}}. {{question.text}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{question.type === 'single_choice' ? 'Single choice' :
+            question.type === 'multi_choice' ? 'Multiple choice' : ''}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-chip-list>
+          <mat-chip *ngFor="let answer of question.options">
+            {{answer.text}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-divider></mat-divider>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  </div>
+</div>

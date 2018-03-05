@@ -2,33 +2,74 @@
 <div mat-dialog-content>
 
   <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+    <mat-step>
         <ng-template matStepLabel>Enter survey name</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Name" formControlName="name" required>
+        <mat-form-field [style.width.px]="survey.name.length * 10">
+          <input matInput placeholder="Survey name" [(ngModel)]="survey.name" required>
         </mat-form-field>
         <div class="stepper">
-          <button mat-button matStepperNext (click)="createSurvey()">Next</button>
+          <button mat-button matStepperNext [disabled]="!survey.name" (click)="createSurvey()">Next</button>
         </div>
-      </form>
     </mat-step>
 
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step>
         <ng-template matStepLabel>Add questions</ng-template>
 
+        <mat-accordion *ngIf="questionsCounter">
+          <mat-expansion-panel *ngFor="let question of questions; let i = index">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="half-width">
+               {{i+1}}. {{question.text}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{question.q_type === 'single_choice' ? 'Single choice' :
+                question.q_type === 'multi_choice' ? 'Multiple choice' : ''}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-chip-list>
+              <mat-chip *ngFor="let answer of question.options_attributes">
+                {{answer.text}}
+              </mat-chip>
+            </mat-chip-list>
+            <button mat-button (click)="deleteQuestion(question)" class="add">Delete</button>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
-
+        <mat-card *ngIf="newQuestion">
+          <mat-form-field [style.width.px]="newQuestion.text.length * 10">
+            <input matInput placeholder="Question name" [(ngModel)]="newQuestion.text">
+          </mat-form-field>
+          <section>
+            <mat-radio-group [(ngModel)]="newQuestion.q_type">
+              <mat-radio-button value="single_choice">
+                Single choice
+              </mat-radio-button>
+              <mat-radio-button value="multi_choice">
+                Multiple choice
+              </mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <mat-form-field class="full-width">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let question of newQuestion.options_attributes" [selectable]="true"
+                        [removable]="true" (remove)="remove(question)">
+                {{question.text}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Answers..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="true"
+                     (matChipInputTokenEnd)="add($event)" />
+            </mat-chip-list>
+          </mat-form-field>
+          <button mat-button (click)="addQuestion()" class="add">Add</button>
+        </mat-card>
 
         <div class="stepper">
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext [disabled]="!questionsCounter" (click)="saveSurvey(stepper)">Save</button>
         </div>
-      </form>
     </mat-step>
 
     <mat-step>

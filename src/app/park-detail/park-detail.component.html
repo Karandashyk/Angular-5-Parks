@@ -52,6 +52,7 @@
     <button *ngIf="!edit" mat-button class="add" (click)="openECDialog('categories')">Add</button>
   </div>
   <div class="park-info">
+    <div *ngIf="!park.categories.length">No categories provided</div>
     <mat-chip-list>
       <mat-chip
         *ngFor="let category of park.categories"
@@ -68,6 +69,7 @@
   <div class="park-info">
     <div *ngIf="edit">
       Year built: {{park.year_built}}<br>
+      <div *ngIf="!park.description">No description provided</div>
       {{park.description}}
     </div>
     <div *ngIf="!edit">

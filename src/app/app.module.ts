@@ -28,7 +28,7 @@ import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent, AddECDialogComponent } from './park-detail/index';
 import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
-import {SurveysComponent, AddSurveyDialogComponent} from './surveys/index';
+import {SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent} from './surveys/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -50,7 +50,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     OwlModule,
     ImageUploadModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD84bDJZmR_LAlNNehLDaZ5EgULW0Q3wC4'
+      apiKey: 'AIzaSyD84bDJZmR_LAlNNehLDaZ5EgULW0Q3wC4',
+      language: 'no',
+      region: 'NO'
     }),
   ],
   declarations: [
@@ -65,7 +67,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SuggestedParkDetailComponent,
     SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent, AddCategoryDialogComponent, AddECDialogComponent,
     CategoriesComponent,
-    SurveysComponent, AddSurveyDialogComponent
+    SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent
   ],
   entryComponents: [
     SuggestionsDialogComponent,
@@ -73,7 +75,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AddEquipmentDialogComponent,
     AddCategoryDialogComponent,
     AddECDialogComponent,
-    AddSurveyDialogComponent
+    AddSurveyDialogComponent,
+    DetailedSurveyDialogComponent
   ],
   providers: [
     AuthGuard,
