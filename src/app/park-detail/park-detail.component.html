@@ -34,7 +34,7 @@
     [carouselClasses]="['owl-theme', 'row', 'sliding']">
   <div class="item" *ngFor="let picture of park.pictures">
     <div class="thumbnail-image"
-         [ngStyle]="{'background': 'url(http://185.57.255.205:8000/' + picture.preview + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
+         [ngStyle]="{'background': 'url(http://185.57.255.205:8000/' + picture.retina + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
     </div>
     <mat-icon *ngIf="!edit" class="material-icons md-18" (click)="deletePicture(picture.id)">delete</mat-icon>
   </div>
@@ -92,10 +92,12 @@
     <span class="bold">{{park.address}}</span>
   </div>
   <agm-map
-    [latitude]="park.coordinates[0]"
-    [longitude]="park.coordinates[1]"
+    [latitude]="mapCenter[0]"
+    [longitude]="mapCenter[1]"
     [zoom]="12"
-    [scrollwheel]="false">
+    [disableDoubleClickZoom]="true"
+    [scrollwheel]="false"
+    (mapDblClick)="mapClicked($event)">
     <agm-marker
       [latitude]="park.coordinates[0]"
       [longitude]="park.coordinates[1]"

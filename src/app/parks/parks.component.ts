@@ -14,6 +14,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class ParksComponent implements OnInit {
   parks: IPark[] = [];
   userCreatedParks: IPark[] = [];
+  win: any;
+  searchName = '';
 
   constructor(
     private parkService: ParkService,
@@ -27,10 +29,11 @@ export class ParksComponent implements OnInit {
   }
 
   export() {
+    this.win = window.open('', '_blank');
     this.exportService.getParksExport()
       .subscribe(blob => {
         const downloadUrl = URL.createObjectURL(blob);
-        window.open(downloadUrl);
+        this.win.document.location = downloadUrl;
       });
   }
 

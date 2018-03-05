@@ -14,7 +14,7 @@ export class AppComponent implements OnInit  {
     {text: 'Categories', route: '/categories'},
     {text: 'Equipment', route: '/equipment'},
     {text: 'Users', route: '/users'},
-    // {text: 'Surveys', route: '/surveys'},
+    {text: 'Surveys', route: '/surveys'},
     // {text: 'Import', route: '/export'},
   ];
   auth_token: string;

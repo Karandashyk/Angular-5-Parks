@@ -1,0 +1,31 @@
+<div class="content-header">Surveys</div>
+<button mat-button  (click)="openDialog()">Create survey</button>
+<mat-divider></mat-divider>
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="number_of_answers">
+      <mat-header-cell *matHeaderCellDef> Number of answers </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.number_of_answers}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="published">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Published </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.published}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let index = i"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="15"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>

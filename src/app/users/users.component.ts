@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { IUser, ISetting } from '../_models/index';
 import { UserService, ImportExportService } from '../_services/index';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import * as fileSaver from 'file-saver';
 @Component({
   moduleId: module.id,
   templateUrl: 'users.component.html',
@@ -15,7 +14,7 @@ export class UsersComponent implements OnInit {
   displayedColumns = ['full_name', 'gender', 'age', 'email', 'delete'];
   dataSource: any;
   display: boolean;
-
+  win: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -24,13 +23,13 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadAllUsers();
+    this.getAllUsers();
     this.getSettings();
   }
 
   deleteUser(id: string) {
     this.userService.deleteUser(id)
-      .subscribe(() => { this.loadAllUsers(); });
+      .subscribe(() => { this.getAllUsers(); });
   }
 
   getSettings() {
@@ -46,14 +45,16 @@ export class UsersComponent implements OnInit {
   }
 
   export() {
+    this.win = window.open('', '_blank');
     this.exportService.getUsersExport()
       .subscribe(blob => {
         const downloadUrl = URL.createObjectURL(blob);
-        window.open(downloadUrl);
+        this.win.document.location = downloadUrl;
       });
   }
 
-  loadAllUsers() {
+
+  getAllUsers() {
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users;

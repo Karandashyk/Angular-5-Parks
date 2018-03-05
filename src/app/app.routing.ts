@@ -7,6 +7,7 @@ import {UsersComponent} from './users/index';
 import {EquipmentComponent} from './equipment/index';
 import {ParkDetailComponent, SuggestedParkDetailComponent} from './park-detail/index';
 import {CategoriesComponent} from './categories/index';
+import {SurveysComponent} from './surveys/index';
 
 const appRoutes: Routes = [
   { path: '', component: ParksComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'equipment', component: EquipmentComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'surveys', component: SurveysComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

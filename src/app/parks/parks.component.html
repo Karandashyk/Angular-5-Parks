@@ -2,13 +2,18 @@
 <button mat-button  (click)="openDialog()">Add park</button>
 <button mat-button (click)="export()">Export parks</button>
 <mat-divider></mat-divider>
+<mat-form-field class="padding">
+  <input matInput placeholder="Search park" [(ngModel)]="searchName">
+</mat-form-field>
+<mat-divider></mat-divider>
+
 <mat-tab-group>
   <mat-tab label="All parks">
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile
-        *ngFor="let park of parks" class="park-wrapper" routerLink="/parks/{{park.id}}">
+        *ngFor="let park of parks|filter:searchName" class="park-wrapper" routerLink="/parks/{{park.id}}">
         <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
-        <img  *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].preview}}" alt="preview">
+        <img  *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].retina}}" alt="preview">
         <div class="title-wrapper">
           <span class="name">{{park.name}}</span>
           <span>{{park.address}}</span>
@@ -27,9 +32,9 @@
   <mat-tab label="Parks suggested by users">
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile
-        *ngFor="let park of userCreatedParks" class="park-wrapper" routerLink="/suggested_parks/{{park.id}}">
+        *ngFor="let park of userCreatedParks|filter:searchName" class="park-wrapper" routerLink="/suggested_parks/{{park.id}}">
         <!--[style.background.url]="'http://138.68.174.118'+park.pictures[0].preview">-->
-        <img *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].preview}}" alt="preview">
+        <img *ngIf="park.pictures.length" src="http://185.57.255.205:8000{{park.pictures[0].retina}}" alt="preview">
         <div class="title-wrapper">
           <span class="name">{{park.name}}</span>
           <span>{{park.address}}</span>

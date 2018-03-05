@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Create survey</h1>
+<div mat-dialog-content>
+
+  <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Enter survey name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" required>
+        </mat-form-field>
+        <div class="stepper">
+          <button mat-button matStepperNext (click)="createSurvey()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add questions</ng-template>
+
+
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+
+
+        <div class="stepper">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
+</div>

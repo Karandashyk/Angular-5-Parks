@@ -23,7 +23,7 @@ export class ParkDetailComponent implements OnInit {
   edit = true;
   equipment_ids = [];
   category_ids = [];
-
+  mapCenter = [];
   constructor(
     private route: ActivatedRoute,
     private parkService: ParkService,
@@ -78,6 +78,7 @@ export class ParkDetailComponent implements OnInit {
         this.category_ids = park.categories.map(function(cat) {
           return cat.id;
         });
+        this.mapCenter = park.coordinates;
       });
   }
 
@@ -113,6 +114,13 @@ export class ParkDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  mapClicked($event) {
+    if(!this.edit) {
+      this.park.coordinates[0] = $event.coords.lat;
+      this.park.coordinates[1] = $event.coords.lng;
+    }
   }
 
   onUploadFinished($event) {

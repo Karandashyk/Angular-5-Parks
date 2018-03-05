@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -11,7 +11,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
-import { AlertService, AuthenticationService, UserService, ParkService, EquipmentService, CategoryService, ImportExportService } from './_services/index';
+import {
+  AlertService,
+  AuthenticationService,
+  UserService,
+  ParkService,
+  EquipmentService,
+  CategoryService,
+  ImportExportService,
+  SurveyService
+} from './_services/index';
 import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
 import { EquipmentComponent, AddEquipmentDialogComponent } from './equipment/index';
@@ -19,17 +28,21 @@ import { ExportComponent } from './export/index';
 import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent, AddECDialogComponent } from './park-detail/index';
 import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
+import {SurveysComponent, AddSurveyDialogComponent} from './surveys/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    Ng2SearchPipeModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     routing,
     MaterialModule,
@@ -51,14 +64,16 @@ import { AgmCoreModule } from '@agm/core';
     LoginComponent,
     SuggestedParkDetailComponent,
     SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent, AddCategoryDialogComponent, AddECDialogComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SurveysComponent, AddSurveyDialogComponent
   ],
   entryComponents: [
     SuggestionsDialogComponent,
     AddDialogComponent,
     AddEquipmentDialogComponent,
     AddCategoryDialogComponent,
-    AddECDialogComponent
+    AddECDialogComponent,
+    AddSurveyDialogComponent
   ],
   providers: [
     AuthGuard,
@@ -69,6 +84,7 @@ import { AgmCoreModule } from '@agm/core';
     EquipmentService,
     CategoryService,
     ImportExportService,
+    SurveyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

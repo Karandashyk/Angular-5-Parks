@@ -19,7 +19,7 @@
         [carouselClasses]="['owl-theme', 'row', 'sliding']">
         <div class="item" *ngFor="let picture of suggestion.pictures">
           <div class="thumbnail-image"
-               [ngStyle]="{'background': 'url(http://185.57.255.205:8000/' + picture.preview + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
+               [ngStyle]="{'background': 'url(http://185.57.255.205:8000/' + picture.retina + ') no-repeat scroll center center', width: '100%', height: '200px', 'background-size': 'contain'}">
           </div>
         </div>
       </owl-carousel>
@@ -30,8 +30,7 @@
       <div class="park-info" *ngIf="suggestion.categories.length">
         <mat-chip-list>
           <mat-chip
-            *ngFor="let category of suggestion.categories"
-            [removable]="true" (remove)="deleteCategory(category.id)">
+            *ngFor="let category of suggestion.categories">
             {{category.name}}
           </mat-chip>
         </mat-chip-list>
