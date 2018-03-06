@@ -1,0 +1,32 @@
+<div class="content-header">Statistics</div>
+<mat-divider></mat-divider>
+<div id="map"></div>
+
+<mat-card>
+  <b>{{stat.average_duration.toFixed(1)}}m</b> Average time
+</mat-card>
+<mat-card>
+  <b>{{stat.platforms.iOS.toFixed(1)}}m</b> IOS
+</mat-card>
+<mat-card>
+  <b>{{stat.platforms.Android.toFixed(1)}}m</b> Android
+</mat-card>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.view}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="popularity">
+      <mat-header-cell *matHeaderCellDef> Popularity </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.popularity}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let index = i"></mat-row>
+  </mat-table>
+
+</div>

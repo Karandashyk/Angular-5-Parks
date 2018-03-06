@@ -6,3 +6,4 @@ export * from './equipment.service';
 export * from './category.service';
 export * from './import-export.service';
 export * from './survey.service';
+export * from './statistic.service';

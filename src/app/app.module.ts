@@ -19,7 +19,8 @@ import {
   EquipmentService,
   CategoryService,
   ImportExportService,
-  SurveyService
+  SurveyService,
+  StatisticService
 } from './_services/index';
 import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
@@ -29,6 +30,7 @@ import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent, AddECDialogComponent } from './park-detail/index';
 import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
 import {SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent} from './surveys/index';
+import { StatisticsComponent } from './statistics/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -67,7 +69,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SuggestedParkDetailComponent,
     SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent, AddCategoryDialogComponent, AddECDialogComponent,
     CategoriesComponent,
-    SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent
+    SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent,
+    StatisticsComponent
   ],
   entryComponents: [
     SuggestionsDialogComponent,
@@ -88,6 +91,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CategoryService,
     ImportExportService,
     SurveyService,
+    StatisticService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
