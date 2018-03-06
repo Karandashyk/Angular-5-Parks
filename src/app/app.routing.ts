@@ -9,6 +9,7 @@ import {ParkDetailComponent, SuggestedParkDetailComponent} from './park-detail/i
 import {CategoriesComponent} from './categories/index';
 import {SurveysComponent} from './surveys/index';
 import {StatisticsComponent} from './statistics/index';
+import {UserSurveyComponent} from './user-survey/index';
 
 const appRoutes: Routes = [
   { path: '', component: ParksComponent, canActivate: [AuthGuard] },
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
   { path: 'surveys', component: SurveysComponent, canActivate: [AuthGuard] },
   { path: 'stat', component: StatisticsComponent, canActivate: [AuthGuard] },
+  { path: 'user_survey', component: UserSurveyComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

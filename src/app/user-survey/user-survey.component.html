@@ -1,0 +1,26 @@
+<div *ngIf="survey">
+  <mat-card>
+    <div class="content-header">{{survey.name}}</div>
+
+    <mat-list>
+      <div mat-list-item *ngFor="let question of survey.questions; let i = index;">
+        <span>{{i+1}}. {{question.text}}</span>
+        <!--<mat-chip-list [(ngModel)]="park.category_ids" [multiple]="question.type === 'multi_choiсe'">-->
+          <!--<mat-chip-->
+            <!--*ngFor="let answer of question.options"-->
+            <!--color="primary"-->
+            <!--[selectable]="true"-->
+            <!--[selected]="isCatSelected(answer.id)"-->
+            <!--(focus)="selectCat(answer.id)">-->
+            <!--{{answer.text}}-->
+          <!--</mat-chip>-->
+        <!--</mat-chip-list>-->
+        <mat-chip-list>
+          <mat-chip *ngFor="let answer of question.options">
+            {{answer.text}}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

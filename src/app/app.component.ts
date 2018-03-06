@@ -16,12 +16,12 @@ export class AppComponent implements OnInit  {
     {text: 'Users', route: '/users'},
     {text: 'Surveys', route: '/surveys'},
     {text: 'Statistics', route: '/stat'},
-
     // {text: 'Import', route: '/export'},
   ];
   auth_token: string;
   isLoggedIn = false;
   isLoggedIn$: Observable<boolean>;
+  survey  = false;
 
   constructor(
     private alertService: AlertService,
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit  {
   }
 
   ngOnInit() {
+    this.survey = document.location.href.indexOf('user_survey') > 0;
     this.isLoggedIn$ = this.authService.isLoggedIn;
     if (localStorage.getItem('auth_token')) {
       // logged in so return true
@@ -43,37 +44,3 @@ export class AppComponent implements OnInit  {
     this.authService.logout();
   }
 }
-
-
-
-// links = [
-//   {text: 'Parks', route: '/parks'},
-//   {text: 'Users', route: '/users'},
-//   {text: 'Surveys', route: '/surveys'},
-//   {text: 'Equipment', route: '/equipment'},
-//   {text: 'Export', route: '/export'}
-// ];
-// currentUser: IUser;
-// users: IUser[] = [];
-// isLoggedIn = false;
-// isLoggedIn$: Observable<boolean>;
-//
-// constructor(
-//   private alertService: AlertService,
-//   private authService: AuthenticationService
-// ) {
-//   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-// }
-//
-// ngOnInit() {
-//   this.isLoggedIn$ = this.authService.isLoggedIn;
-//   if (localStorage.getItem('currentUser')) {
-//     // logged in so return true
-//     this.isLoggedIn = true;
-//   }
-// }
-//
-// onLogout() {
-//   this.isLoggedIn = false;
-//   this.authService.logout();
-// }

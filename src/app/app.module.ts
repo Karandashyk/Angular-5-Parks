@@ -31,6 +31,7 @@ import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogCom
 import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
 import {SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent} from './surveys/index';
 import { StatisticsComponent } from './statistics/index';
+import { UserSurveyComponent } from './user-survey/index';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -70,7 +71,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SuggestionsDialogComponent, AddDialogComponent, AddEquipmentDialogComponent, AddCategoryDialogComponent, AddECDialogComponent,
     CategoriesComponent,
     SurveysComponent, AddSurveyDialogComponent, DetailedSurveyDialogComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    UserSurveyComponent
   ],
   entryComponents: [
     SuggestionsDialogComponent,

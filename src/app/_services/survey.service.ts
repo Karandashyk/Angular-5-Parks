@@ -30,6 +30,10 @@ export class SurveyService {
     return this.http.get<IFullSurvey>(`${this.surveysUrl}/${id}`);
   }
 
+  getUserSurvey(survey_id: string, user_id: string) {
+    return this.http.get<IFullSurvey>(`${this.surveysUrl}/${survey_id}?user_id=${user_id}`);
+  }
+
   createSurvey (name: string) {
     return this.http.post(this.surveysUrl, { survey: {name: name} } );
   }
