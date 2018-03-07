@@ -28,8 +28,8 @@ export class CategoryService {
   }
 
   /** POST park to the server */
-  addCategory(name: string) {
-    return this.http.post(this.categoriesUrl, { category: { name: name } });
+  addCategory(category: ICategory) {
+    return this.http.post(this.categoriesUrl, { category: category });
   }
 
   /** DELETE category from the server */

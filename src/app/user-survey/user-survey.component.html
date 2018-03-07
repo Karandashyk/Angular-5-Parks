@@ -1,26 +1,49 @@
-<div *ngIf="survey">
+<div *ngIf="survey && !finished">
   <mat-card>
     <div class="content-header">{{survey.name}}</div>
 
     <mat-list>
       <div mat-list-item *ngFor="let question of survey.questions; let i = index;">
         <span>{{i+1}}. {{question.text}}</span>
-        <!--<mat-chip-list [(ngModel)]="park.category_ids" [multiple]="question.type === 'multi_choiсe'">-->
-          <!--<mat-chip-->
-            <!--*ngFor="let answer of question.options"-->
-            <!--color="primary"-->
-            <!--[selectable]="true"-->
-            <!--[selected]="isCatSelected(answer.id)"-->
-            <!--(focus)="selectCat(answer.id)">-->
-            <!--{{answer.text}}-->
-          <!--</mat-chip>-->
-        <!--</mat-chip-list>-->
-        <mat-chip-list>
-          <mat-chip *ngFor="let answer of question.options">
+
+        <section *ngIf="question.type === 'single_choice'">
+          <mat-radio-group [(ngModel)]="results[question.id]">
+            <mat-radio-button *ngFor="let answer of question.options" [value]="answer.id">
+              {{answer.text}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+        <mat-chip-list [(ngModel)]="results[question.id]" *ngIf="question.type === 'multi_choice'" multiple>
+          <mat-chip
+            *ngFor="let answer of question.options"
+            color="primary"
+            [selectable]="true"
+            [selected]="isAswSelected(question.id, answer.id)"
+            (focus)="selectAsw(question.id, answer.id)">
             {{answer.text}}
           </mat-chip>
         </mat-chip-list>
+
       </div>
     </mat-list>
+    <button *ngIf="results"
+      mat-button
+      class="finish"
+      (click)="finish()"
+      [disabled]="!isDisabled()">
+      Finish
+    </button>
+
+  </mat-card>
+</div>
+<div *ngIf="finished">
+  <mat-card>
+    Your answer is successfully sent
+  </mat-card>
+</div>
+<div *ngIf="error">
+  <mat-card>
+    Something went wrong
   </mat-card>
 </div>

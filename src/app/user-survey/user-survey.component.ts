@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class UserSurveyComponent implements OnInit {
+  results = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -19,32 +20,57 @@ export class UserSurveyComponent implements OnInit {
   surveyId: string;
   userId: string;
   survey: IFullSurvey;
+  finished = false;
+  error = false;
 
   ngOnInit() {
-    this.surveyId = '5a9e79a9e60ea27e648106d2';
-    this.userId = '5a69789de60ea21ec2abef8e';
-    // this.surveyId = this.route.snapshot.params.survey_id;
-    // this.userId = this.route.snapshot.params.user_id;
+    // this.surveyId = '5a9e79a9e60ea27e648106d2';
+    // this.userId = '5a69789de60ea21ec2abef8e';
+    this.surveyId = this.route.snapshot.params.survey_id;
+    this.userId = this.route.snapshot.params.user_id;
+
     this.surveyService.getUserSurvey(this.surveyId, this.userId)
       .subscribe(survey => {
         this.survey = survey;
-        console.log(survey);
+        // for (let q in survey.questions) {
+        //   this.results[survey.questions[q].id] = [];
+        // }
+      }, err => {
+        this.error = true;
       });
   }
 
-  // isCatSelected(id: string): boolean {
-  //   const index = this.park.category_ids.indexOf(id);
-  //   return index >= 0;
-  // }
-  //
-  // selectCat(id: string): void {
-  //   const index = this.park.category_ids.indexOf(id);
-  //
-  //   if (index >= 0) {
-  //     this.park.category_ids.splice(index, 1);
-  //   } else {
-  //     this.park.category_ids.push(id);
-  //   }
-  // }
+  isAswSelected(qId: string, id: string): boolean {
+    if (!this.results[qId]) return false;
+    const index = this.results[qId].indexOf(id);
+    return index >= 0;
+  }
+
+  selectAsw(qId: string, id: string): void {
+    if (!this.results[qId]) this.results[qId] = [];
+    const index = this.results[qId].indexOf(id);
+
+    if (index >= 0) {
+      this.results[qId].splice(index, 1);
+    } else {
+      this.results[qId].push(id);
+    }
+  }
+
+  finish() {
+    this.surveyService.submitSurvey(this.surveyId, this.userId).subscribe();
+    for (let res in this.results) {
+      this.surveyService.submitAnswer({
+        survey_id: this.surveyId,
+        question_id: res,
+        user_id: this.userId,
+        options_ids: this.results[res]
+      }).subscribe(() => this.finished = true );
+    }
+  }
+
+  isDisabled() {
+    return Object.keys(this.results).length === this.survey.questions.length;
+  }
 
 }

@@ -46,3 +46,11 @@ export interface IQuestion {
     }
     ];
 }
+
+
+export interface IResult {
+  survey_id: string;
+  question_id: string;
+  user_id: string;
+  options_ids: string[];
+}

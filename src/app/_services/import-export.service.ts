@@ -37,7 +37,7 @@ export class ImportExportService {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
 
-            const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+            const contentType = 'text/csv;charset=utf-8';
             const blob = new Blob([xhr.response], { type: contentType });
             observer.next(blob);
             observer.complete();
@@ -67,7 +67,7 @@ export class ImportExportService {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
 
-            const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+            const contentType = 'text/csv;charset=utf-8';
             const blob = new Blob([xhr.response], { type: contentType });
             observer.next(blob);
             observer.complete();

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ISurvey, INewQuestion, IFullSurvey } from '../_models/index';
+import { ISurvey, INewQuestion, IFullSurvey, IResult } from '../_models/index';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -21,6 +21,8 @@ export class SurveyService {
   ) { }
 
   private surveysUrl = 'http://185.57.255.205:8000/admin/surveys';  // URL to web api
+  private usersurveyUrl = 'http://185.57.255.205:8000/surveys';  // URL to web api
+  private answerUrl = 'http://185.57.255.205:8000/answers';  // URL to web api
 
   getAllSurveys (): Observable<ISurvey[]>  {
     return this.http.get<ISurvey[]>(this.surveysUrl);
@@ -31,7 +33,7 @@ export class SurveyService {
   }
 
   getUserSurvey(survey_id: string, user_id: string) {
-    return this.http.get<IFullSurvey>(`${this.surveysUrl}/${survey_id}?user_id=${user_id}`);
+    return this.http.get<IFullSurvey>(`${this.usersurveyUrl}/${survey_id}?user_id=${user_id}`);
   }
 
   createSurvey (name: string) {
@@ -52,6 +54,14 @@ export class SurveyService {
 
   addQuestion(id: string, question: INewQuestion) {
     return this.http.post(`${this.surveysUrl}/${id}/questions`, {question: question});
+  }
+
+  submitSurvey(sId: string, uId: string) {
+    return this.http.post(`${this.usersurveyUrl}/submit`, {survey: {survey_id: sId, user_id: uId}} );
+  }
+
+  submitAnswer(result: IResult) {
+    return this.http.post(this.answerUrl, { result: result } );
   }
 
 }

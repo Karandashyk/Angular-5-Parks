@@ -62,9 +62,12 @@ export class AddCategoryDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  category = '';
+  category: ICategory = {
+    name: '',
+    description: ''
+  };
 
-  addCategory(category: string): void {
+  addCategory(category: ICategory): void {
     this.categoryService.addCategory(category)
       .subscribe( () => {
         this.dialogRef.close();

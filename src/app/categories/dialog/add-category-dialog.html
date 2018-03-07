@@ -1,8 +1,11 @@
 <h1 mat-dialog-title>Add category</h1>
 <div mat-dialog-content class="dialog">
-  <div class="content-header name">
+  <div class="wrapper">
     <mat-form-field class="input-width">
-      <input matInput [(ngModel)]="category" placeholder="Name">
+      <input matInput [(ngModel)]="category.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field class="input-width">
+      <input matInput [(ngModel)]="category.description" placeholder="Description">
     </mat-form-field>
   </div>
   <!--<mat-expansion-panel>-->

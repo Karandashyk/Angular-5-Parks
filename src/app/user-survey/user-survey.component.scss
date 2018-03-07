@@ -2,4 +2,14 @@
   width: 800px;
   //height: 900px;
   margin: 50px auto;
+  &.finish {
+
+  }
+}
+.finish {
+  position: relative;
+  left: 665px;
+}
+.mat-radio-button {
+  margin-right: 15px;
 }
