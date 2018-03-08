@@ -41,13 +41,15 @@ export class UserSurveyComponent implements OnInit {
   }
 
   isAswSelected(qId: string, id: string): boolean {
-    if (!this.results[qId]) return false;
-    const index = this.results[qId].indexOf(id);
-    return index >= 0;
+    return (this.results[qId] ? this.results[qId].indexOf(id) : -1) >= 0;
   }
 
   selectAsw(qId: string, id: string): void {
-    if (!this.results[qId]) this.results[qId] = [];
+    if (!this.results[qId]) {
+      this.results[qId] = [];
+      this.results[qId].push(id);
+      return;
+    }
     const index = this.results[qId].indexOf(id);
 
     if (index >= 0) {
@@ -64,7 +66,7 @@ export class UserSurveyComponent implements OnInit {
         survey_id: this.surveyId,
         question_id: res,
         user_id: this.userId,
-        options_ids: this.results[res]
+        options_ids: Array.isArray(this.results[res]) ? this.results[res] : [this.results[res]]
       }).subscribe(() => this.finished = true );
     }
   }
