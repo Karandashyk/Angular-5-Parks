@@ -60,7 +60,6 @@ export class UserSurveyComponent implements OnInit {
   }
 
   finish() {
-    this.surveyService.submitSurvey(this.surveyId, this.userId).subscribe();
     for (let res in this.results) {
       this.surveyService.submitAnswer({
         survey_id: this.surveyId,
@@ -69,6 +68,7 @@ export class UserSurveyComponent implements OnInit {
         options_ids: Array.isArray(this.results[res]) ? this.results[res] : [this.results[res]]
       }).subscribe(() => this.finished = true );
     }
+    this.surveyService.submitSurvey(this.surveyId, this.userId).subscribe();
   }
 
   isDisabled() {
