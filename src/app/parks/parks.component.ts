@@ -16,16 +16,23 @@ export class ParksComponent implements OnInit {
   userCreatedParks: IPark[] = [];
   win: any;
   searchName = '';
+  fileToUpload: File = null;
+
 
   constructor(
     private parkService: ParkService,
     public dialog: MatDialog,
-    private exportService: ImportExportService
+    private exportService: ImportExportService,
   ) {}
 
   ngOnInit() {
     this.loadParks();
     this.loadUserCreatedParks();
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.exportService.importParks(this.fileToUpload).subscribe();
   }
 
   export() {
@@ -36,6 +43,7 @@ export class ParksComponent implements OnInit {
         this.win.document.location = downloadUrl;
       });
   }
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {

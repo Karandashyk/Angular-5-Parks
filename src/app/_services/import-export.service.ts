@@ -20,6 +20,14 @@ export class ImportExportService {
   ) { }
 
   private exportUrl = 'http://185.57.255.205:8000/admin/export';  // URL to web api
+  private importUrl = 'http://185.57.255.205:8000/admin/import/parks';  // URL to web api
+
+  importParks(fileToUpload: File) {
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    console.log(formData);
+    return this.http.post(this.importUrl, formData);
+  }
 
   getUsersExport() {
     return Observable.create(observer => {
