@@ -3,6 +3,7 @@ export interface IPark {
   name: string;
   description: string;
   address: string;
+  fb_page_id: string;
   city: string;
   coordinates: [number, number];
   year_built: string;
