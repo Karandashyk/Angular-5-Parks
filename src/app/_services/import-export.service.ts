@@ -25,8 +25,7 @@ export class ImportExportService {
   importParks(fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('fileKey', fileToUpload, fileToUpload.name);
-    console.log(formData);
-    return this.http.post(this.importUrl, formData);
+    return this.http.post(this.importUrl, {import: {archive: fileToUpload}});
   }
 
   getUsersExport() {
