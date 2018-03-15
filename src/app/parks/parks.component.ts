@@ -16,7 +16,6 @@ export class ParksComponent implements OnInit {
   userCreatedParks: IPark[] = [];
   win: any;
   searchName = '';
-  fileToUpload: File = null;
 
 
   constructor(
@@ -30,10 +29,6 @@ export class ParksComponent implements OnInit {
     this.loadUserCreatedParks();
   }
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-    this.exportService.importParks(this.fileToUpload).subscribe();
-  }
 
   export() {
     this.win = window.open('', '_blank');
@@ -87,6 +82,7 @@ export class AddDialogComponent implements OnInit {
     description: '',
     latitude: 0,
     longitude: 0,
+    fb_page_id: '',
     year_built: '',
     category_ids: [],
     equipment_ids: [],

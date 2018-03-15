@@ -10,6 +10,7 @@ import {CategoriesComponent} from './categories/index';
 import {SurveysComponent} from './surveys/index';
 import {StatisticsComponent} from './statistics/index';
 import {UserSurveyComponent} from './user-survey/index';
+import {ImportComponent} from './import/index';
 
 const appRoutes: Routes = [
   { path: '', component: ParksComponent, canActivate: [AuthGuard] },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'surveys', component: SurveysComponent, canActivate: [AuthGuard] },
   { path: 'stat', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'user_survey', component: UserSurveyComponent},
+  { path: 'import', component: ImportComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

@@ -57,7 +57,7 @@ export class ParkDetailComponent implements OnInit {
       data: { component: component, ids: ids}
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!result) return;
+      if (!result) { return; }
       if (result.component === 'categories') {
         this.category_ids = this.category_ids.concat(result.data);
         this.save();
@@ -144,6 +144,7 @@ export class ParkDetailComponent implements OnInit {
       name: this.park.name,
       description: this.park.description,
       latitude: this.park.coordinates[0],
+      fb_page_id: this.park.fb_page_id,
       longitude: this.park.coordinates[1],
       year_built: this.park.year_built,
       equipment_ids: this.equipment_ids,
@@ -163,6 +164,7 @@ export class ParkDetailComponent implements OnInit {
 export class SuggestionsDialogComponent implements OnInit {
 
   suggestions: IPark[] = [];
+  park: IPark;
 
   constructor(
     public dialogRef: MatDialogRef<SuggestionsDialogComponent>,
@@ -172,11 +174,12 @@ export class SuggestionsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSuggestions();
+    this.park = this.data.park;
   }
 
   getSuggestions(): void {
     this.parkService.getParkSuggestions(this.data.id)
-      .subscribe(suggestions => {this.suggestions = suggestions;});
+      .subscribe(suggestions => {this.suggestions = suggestions; });
   }
 
   apply(id: string) {
@@ -193,14 +196,18 @@ export class SuggestionsDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // compare(obj1: IPark, obj2: IPark): boolean {
-  //   for (const p in obj1) {
-  //     if (typeof (obj1[p]) === 'object') {
-  //       if (!this.compare(obj1[p], obj2[p])) { return false; }
-  //     } else if (obj1[p] !== obj2[p]) { return false; }
-  //   }
-  //   return true;
-  // }
+  compArr(eqArrS, eqArrP) {
+    let objectsAreSame = true;
+    const x = eqArrS;
+    const y = eqArrP;
+    for (const propertyName in x) {
+      if (x[propertyName] !== y[propertyName]) {
+        objectsAreSame = false;
+        break;
+      }
+    }
+    return !objectsAreSame;
+  }
 
 }
 

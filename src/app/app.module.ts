@@ -25,7 +25,7 @@ import {
 import { ParksComponent, AddDialogComponent } from './parks/index';
 import { UsersComponent } from './users/index';
 import { EquipmentComponent, AddEquipmentDialogComponent } from './equipment/index';
-import { ExportComponent } from './export/index';
+import { ImportComponent } from './import/index';
 import { LoginComponent } from './login/index';
 import { ParkDetailComponent, SuggestedParkDetailComponent, SuggestionsDialogComponent, AddECDialogComponent } from './park-detail/index';
 import {CategoriesComponent, AddCategoryDialogComponent} from './categories/index';
@@ -38,7 +38,7 @@ import { ImageUploadModule } from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-
+require('./jquery.uploadfile.min.js');
 
 @NgModule({
   imports: [
@@ -63,7 +63,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AlertComponent,
     ParksComponent,
     EquipmentComponent,
-    ExportComponent,
+    ImportComponent,
     UsersComponent,
     ParkDetailComponent,
     LoginComponent,

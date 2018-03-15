@@ -37,6 +37,7 @@ export interface INewPark {
   description: string;
   latitude: number;
   longitude: number;
+  fb_page_id: string;
   year_built: string;
   category_ids: string[];
   equipment_ids: string[];

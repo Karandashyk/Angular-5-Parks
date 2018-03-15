@@ -9,8 +9,15 @@
       </mat-expansion-panel-header>
       <button mat-button (click)="apply(suggestion.id)">Apply</button>
       <button mat-button (click)="delete(suggestion.id)">Delete</button>
-      <div class="content-header">
-        {{suggestion.name}}
+      <div class="sub-content-header" [ngClass]="park.name != suggestion.name ? 'diff' : ''">
+        Name
+      </div>
+      <div class="park-info">
+        <span class="sug-name">{{suggestion.name}}</span>
+      </div>
+
+      <div class="sub-content-header diff" *ngIf="suggestion.pictures.length">
+        Suggested images
       </div>
       <owl-carousel
         *ngIf="suggestion.pictures.length"
@@ -24,7 +31,9 @@
         </div>
       </owl-carousel>
 
-      <div class="sub-content-header" *ngIf="suggestion.categories.length">
+      <div class="sub-content-header"
+           *ngIf="suggestion.categories.length"
+           [ngClass]="compArr(suggestion.categories, park.categories) ? 'diff' : ''">
         Categories
       </div>
       <div class="park-info" *ngIf="suggestion.categories.length">
@@ -36,7 +45,9 @@
         </mat-chip-list>
       </div>
 
-      <div class="sub-content-header" *ngIf="suggestion.description || suggestion.year_built">
+      <div class="sub-content-header"
+        *ngIf="suggestion.description || suggestion.year_built"
+        [ngClass]="(park.description != suggestion.description) || (park.year_built != suggestion.year_built) ? 'diff' : ''">
         Description
       </div>
       <div class="park-info" *ngIf="suggestion.description || suggestion.year_built">
@@ -44,7 +55,7 @@
           {{suggestion.description}}
       </div>
 
-      <div class="sub-content-header" *ngIf="suggestion.address">
+      <div class="sub-content-header" *ngIf="suggestion.address" [ngClass]="park.address != suggestion.address ? 'diff' : ''">
         Address
       </div>
       <div class="park-info" *ngIf="suggestion.address">
@@ -61,7 +72,9 @@
         </agm-marker>
       </agm-map>
 
-      <div class="sub-content-header" *ngIf="suggestion.equipment.length">
+      <div class="sub-content-header"
+        *ngIf="suggestion.equipment.length"
+        [ngClass]="compArr(suggestion.equipment, park.equipment) ? 'diff' : ''">
         Equipment
       </div>
       <mat-grid-list cols="4" rowHeight="1:1" *ngIf="suggestion.equipment.length">

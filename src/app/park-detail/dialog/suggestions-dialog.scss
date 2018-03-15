@@ -1,3 +1,7 @@
+$yellow: #ffd740;
+
+
+
 mat-divider {
   margin-bottom: 10px;
 }
@@ -27,4 +31,11 @@ agm-map {
       width: 100%;
     }
   }
+}
+
+.sug-name {
+  font-size: 25px;
+}
+.diff {
+  background-color: $yellow;
 }

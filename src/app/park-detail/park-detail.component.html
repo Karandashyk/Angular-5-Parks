@@ -67,23 +67,27 @@
     Description
   </div>
   <div class="park-info">
-    <div *ngIf="park.fb_page_id">Facebook page: {{park.fb_page_id}}</div>
     <div *ngIf="edit">
+      <span *ngIf="park.fb_page_id">Facebook page: {{park.fb_page_id}}</span>
       Year built: {{park.year_built}}<br>
       <div *ngIf="!park.description">No description provided</div>
       {{park.description}}
     </div>
     <div *ngIf="!edit">
-    Year built:
-    <mat-form-field class="input-width">
-      <input matInput [(disabled)]="edit" [(ngModel)]="park.year_built" type="text" maxlength="4">
-    </mat-form-field><br>
-    <mat-form-field class="input-full-width">
-      <textarea matInput
-                matTextareaAutosize
-                [(disabled)]="edit"
-                [(ngModel)]="park.description"></textarea>
-    </mat-form-field>
+      Year built:
+      <mat-form-field class="input-width">
+        <input matInput [(disabled)]="edit" [(ngModel)]="park.year_built" type="text" maxlength="4">
+      </mat-form-field><br>
+      Facebook page:
+      <mat-form-field class="input-full-width">
+        <input matInput [(disabled)]="edit" [(ngModel)]="park.fb_page_id">
+      </mat-form-field><br>
+      <mat-form-field class="input-full-width">
+        <textarea matInput
+                  matTextareaAutosize
+                  [(disabled)]="edit"
+                  [(ngModel)]="park.description"></textarea>
+      </mat-form-field>
     </div>
   </div>
 
@@ -112,6 +116,9 @@
   <div class="sub-content-header">
     Equipment
     <button *ngIf="!edit" mat-button class="add" (click)="openECDialog('equipment')">Add</button>
+  </div>
+  <div class="park-info">
+    <div *ngIf="!park.equipment.length">No equipment provided</div>
   </div>
   <mat-grid-list cols="6" rowHeight="1:1" *ngIf="park.equipment">
     <mat-grid-tile

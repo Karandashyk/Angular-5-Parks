@@ -59,14 +59,17 @@
           Description
         </mat-panel-title>
       </mat-expansion-panel-header>
-
       <mat-form-field>
         <input matInput
                [(ngModel)]="park.year_built"
                maxlength="4"
                placeholder="Year built">
       </mat-form-field><br>
-
+      <mat-form-field class="input-full-width">
+        <input matInput
+               [(ngModel)]="park.fb_page_id"
+               placeholder="Facebook page">
+      </mat-form-field><br>
       <mat-form-field class="input-full-width">
         <textarea matInput
                   matTextareaAutosize

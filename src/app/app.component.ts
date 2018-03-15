@@ -16,7 +16,7 @@ export class AppComponent implements OnInit  {
     {text: 'Users', route: '/users'},
     {text: 'Surveys', route: '/surveys'},
     {text: 'Statistics', route: '/stat'},
-    // {text: 'Import', route: '/export'},
+    {text: 'Import', route: '/import'},
   ];
   auth_token: string;
   isLoggedIn = false;
