@@ -18,7 +18,6 @@ export class ImportComponent implements OnInit {
 
     $('#fileuploader').uploadFile({
       url: 'http://185.57.255.205:8000/admin/import/parks',
-      fileName: 'ParksZip',
       headers: { Authorization: auth_token }
     });
   }
